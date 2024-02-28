@@ -17,7 +17,7 @@ static const TextStyle numbers = TextStyle(
   fontWeight: FontWeight.w600,
   color: AppColors.black,
 );
-static const TextStyle text = TextStyle(
+static const TextStyle textTaskTitle = TextStyle(
   fontSize:18,
   fontWeight: FontWeight.bold,
   color: AppColors.backgroundBar,
@@ -92,10 +92,8 @@ colorScheme:const ColorScheme(brightness: Brightness.light,
     backgroundColor: AppColors.backgroundBar,
     iconSize: 30,
     shape:StadiumBorder(side: BorderSide(color: AppColors.white,width: 4)),
-
-  )
-
-);
+  ),
+    );
 static ThemeData darkTheme = ThemeData(
   primaryColor: AppColors.backgroundBar,
   scaffoldBackgroundColor: AppColors.transparent,
@@ -124,7 +122,11 @@ static ThemeData darkTheme = ThemeData(
     showSelectedLabels: false,
     showUnselectedLabels: false,
   ),
-
+    floatingActionButtonTheme:  const FloatingActionButtonThemeData(
+      backgroundColor: AppColors.backgroundBar,
+      iconSize: 30,
+      shape:StadiumBorder(side: BorderSide(color: AppColors.cart,width: 4)),
+    )
 );
 
 }
