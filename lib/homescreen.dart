@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.transparent,
         appBar: buildAppBar(),
         floatingActionButton: buildFloatingActionButton(),
-        bottomNavigationBar: buildBottomNavigationBar(),
+        bottomNavigationBar: buildBottomNavigationBar(context),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: taps[currentIndexTab],
       ),
@@ -44,19 +44,18 @@ class _HomeScreenState extends State<HomeScreen> {
     title: Text(context.getLocalizations.toDoList),
   );
 
-  Widget buildBottomNavigationBar() =>Theme(
+  Widget buildBottomNavigationBar(context) =>Theme(
       data: Theme.of(context).copyWith(canvasColor: Theme.of(context).primaryColor),
-        child: BottomNavigationBar(
-            currentIndex: currentIndexTab,
-            onTap: (newTabIndex){
-              currentIndexTab = newTabIndex;
-              setState(() {});
-            }, items: [
-              BottomNavigationBarItem(icon: Icon(Icons.list_outlined),label: "List"),
-              BottomNavigationBarItem(icon: Icon(Icons.settings),label: "Setting")
+      child: BottomNavigationBar(
+          currentIndex: currentIndexTab,
+          onTap: (newTabIndex){
+      currentIndexTab = newTabIndex;
+      setState(() {});
+          }, items: const[
+          BottomNavigationBarItem(icon: Icon(Icons.list_outlined),label: "List"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings),label: "Setting")
 
-  ],)
-      );
+        ],));
 
   FloatingActionButton buildFloatingActionButton() => FloatingActionButton(
     onPressed: (){},child: Icon(Icons.add,color: AppColors.white,),
