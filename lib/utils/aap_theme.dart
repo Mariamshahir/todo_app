@@ -79,18 +79,23 @@ colorScheme:const ColorScheme(brightness: Brightness.light,
     onBackground: AppColors.background,
     surface: AppColors.black,
     onSurface: AppColors.black),
+  bottomAppBarTheme: const BottomAppBarTheme(
+    elevation: 0,
+
+  ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    backgroundColor: AppColors.white,
+    landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
+    elevation: 0,
+    backgroundColor: AppColors.transparent,
     selectedItemColor: AppColors.backgroundBar,
-    selectedIconTheme: IconThemeData(size: 22),
-    unselectedIconTheme: IconThemeData(size: 20),
+    selectedIconTheme: IconThemeData(size: 36),
+    unselectedIconTheme: IconThemeData(size: 30),
     unselectedItemColor: AppColors.selectItem,
     showSelectedLabels: false,
     showUnselectedLabels: false,
   ),
   floatingActionButtonTheme:  const FloatingActionButtonThemeData(
     backgroundColor: AppColors.backgroundBar,
-    elevation: 0,
     iconSize: 30,
     shape:StadiumBorder(side: BorderSide(color: AppColors.white,width: 4)),
   ),
@@ -115,7 +120,6 @@ static ThemeData darkTheme = ThemeData(
       surface: AppColors.white,
       onSurface: AppColors.white),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    elevation: 0,
     backgroundColor: AppColors.cart,
     selectedItemColor: AppColors.cart,
     selectedIconTheme: IconThemeData(size: 36),
@@ -125,7 +129,6 @@ static ThemeData darkTheme = ThemeData(
     showUnselectedLabels: false,
   ),
     floatingActionButtonTheme:  const FloatingActionButtonThemeData(
-      elevation: 0,
       backgroundColor: AppColors.backgroundBar,
       iconSize: 30,
       shape:StadiumBorder(side: BorderSide(color: AppColors.cart,width: 4)),
