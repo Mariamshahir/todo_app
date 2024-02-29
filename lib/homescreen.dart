@@ -5,6 +5,7 @@ import 'package:todo/taps/list_tap.dart';
 import 'package:todo/taps/settings_tap.dart';
 import 'package:todo/utils/app_colors.dart';
 import 'package:todo/utils/app_language.dart';
+import 'package:todo/widget/add_bottom.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "homescreen";
@@ -41,7 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   AppBar buildAppBar() => AppBar(
-    title: Text(context.getLocalizations.toDoList),
+    title: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(context.getLocalizations.toDoList),
+      ],
+    ),
   );
 
   Widget buildBottomNavigationBar(context) =>Theme(
@@ -67,7 +73,14 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 
   FloatingActionButton buildFloatingActionButton() => FloatingActionButton(
-    onPressed: (){},child: Icon(Icons.add,color: AppColors.white,),
+    onPressed: (){
+      showModalBottomSheet(context: context, isScrollControlled: true,builder: (context){
+        return Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: AddBottom(),
+        );
+      });
+    },child: Icon(Icons.add,color: AppColors.white,),
   );
   }
 

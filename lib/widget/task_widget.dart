@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:todo/utils/aap_theme.dart';
 import 'package:todo/utils/app_assets.dart';
 import 'package:todo/utils/app_colors.dart';
+import 'package:todo/models/todo_model.dart';
 
 class TaskWidget extends StatelessWidget {
-  const TaskWidget({super.key});
+  final Todo todo;
+  const TaskWidget({super.key, required this.todo});
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +33,13 @@ class TaskWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Play basket ball",style: AppTheme.textTaskTitle,maxLines: 1,overflow: TextOverflow.ellipsis,),
+                Text(todo.task,style: AppTheme.textTaskTitle,maxLines: 1,overflow: TextOverflow.ellipsis,),
                 SizedBox(height: 8,),
                 Row(
                   children: [
                     Icon(Icons.timelapse),
-                    Text("10:30 AM",style: AppTheme.numbers,),
+                    Text(todo.dateTime as String,style: AppTheme.numbers,),
+                    Text(todo.description,style: AppTheme.numbers,)
                   ],
                 )
               ],

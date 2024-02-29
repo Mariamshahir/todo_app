@@ -12,9 +12,15 @@ static const TextStyle days = TextStyle(
   fontWeight: FontWeight.bold,
   color: AppColors.black,
 );
+
 static const TextStyle numbers = TextStyle(
   fontSize:12,
   fontWeight: FontWeight.w600,
+  color: AppColors.black,
+);
+static const TextStyle title = TextStyle(
+  fontSize:18,
+  fontWeight: FontWeight.bold,
   color: AppColors.black,
 );
 static const TextStyle textTaskTitle = TextStyle(
@@ -95,6 +101,7 @@ colorScheme:const ColorScheme(brightness: Brightness.light,
     showUnselectedLabels: false,
   ),
   floatingActionButtonTheme:  const FloatingActionButtonThemeData(
+    elevation: 0,
     backgroundColor: AppColors.backgroundBar,
     iconSize: 30,
     shape:StadiumBorder(side: BorderSide(color: AppColors.white,width: 4)),
