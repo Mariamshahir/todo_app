@@ -1,4 +1,6 @@
 {
   "toDoList": "To Do List",
-  "settings": "Settings"
+  "settings": "Settings",
+  "language": "Language",
+  "mode": "Mode"
 }

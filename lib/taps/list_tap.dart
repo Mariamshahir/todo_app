@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/models/todo_model.dart';
+import 'package:todo/provider/language_provider.dart';
 import 'package:todo/provider/list_provider.dart';
 import 'package:todo/utils/app_colors.dart';
 import 'package:todo/widget/task_widget.dart';
@@ -18,6 +19,7 @@ class ListTap extends StatefulWidget {
 class _ListTapState extends State<ListTap> {
   late ListProvider listProvider;
   List<Todo> todos=[];
+  late LanguageProvider provider;
 
   @override
   void initState() {
@@ -33,18 +35,21 @@ class _ListTapState extends State<ListTap> {
     return Column(
       children: [
         buildEasyInfiniteDateTimeLine(),
-                Expanded(
-                  child: ListView.builder(
-                      itemCount:todos.length,
-                      itemBuilder: (context,index){
-                        return TaskWidget(todo: todos[index],);
-                      }),
-                )
+        Expanded(
+          child: ListView.builder(
+              itemCount:todos.length,
+              itemBuilder: (context,index){
+                return TaskWidget(todo: todos[index],);
+              }),
+        )
       ],
     );
   }
 
   Widget buildEasyInfiniteDateTimeLine() {
+    return Consumer<LanguageProvider>(
+        builder: (context, languageProvider, _) {
+      String selectLanguage = languageProvider.currentLocale;
     return Stack(
       children: [
         Positioned.fill(
@@ -84,8 +89,11 @@ class _ListTapState extends State<ListTap> {
               ),
             );
           },
+          locale: selectLanguage,
         ),
       ],
+    );
+        },
     );
   }
 }

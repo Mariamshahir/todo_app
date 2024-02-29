@@ -43,6 +43,11 @@ static const TextStyle task = TextStyle(
   fontWeight: FontWeight.w600,
   color: AppColors.gray,
 );
+static const TextStyle titleSetting = TextStyle(
+  fontSize:25,
+  fontWeight: FontWeight.bold,
+  color: AppColors.backgroundBar,
+);
 static const TextStyle setting = TextStyle(
   fontSize:14,
   fontWeight: FontWeight.w600,
@@ -83,11 +88,10 @@ colorScheme:const ColorScheme(brightness: Brightness.light,
     onError: AppColors.error,
     background: AppColors.background,
     onBackground: AppColors.background,
-    surface: AppColors.black,
-    onSurface: AppColors.black),
+    surface: AppColors.white,
+    onSurface: AppColors.white),
   bottomAppBarTheme: const BottomAppBarTheme(
     elevation: 0,
-
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
@@ -106,6 +110,7 @@ colorScheme:const ColorScheme(brightness: Brightness.light,
     iconSize: 30,
     shape:StadiumBorder(side: BorderSide(color: AppColors.white,width: 4)),
   ),
+
     );
 static ThemeData darkTheme = ThemeData(
   primaryColor: AppColors.backgroundBar,

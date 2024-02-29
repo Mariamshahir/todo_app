@@ -51,7 +51,7 @@ class _AddBottomState extends State<AddBottom> {
             const SizedBox(height: 33,),
             const Text("Select time",textAlign: TextAlign.start,style: AppTheme.selectTime),
             InkWell(
-                onTap: (){ShowMyDate();},
+                onTap: (){ShowMyDate(context);},
                 child:  Text("${selectDate.month}/${selectDate.day}/${selectDate.year}",style: AppTheme.time,textAlign: TextAlign.center,)),
             const Spacer(),
             buildElevatedButton()
@@ -71,12 +71,31 @@ class _AddBottomState extends State<AddBottom> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),);
   }
 
-  void ShowMyDate() async{
-    selectDate = (await showDatePicker(context: context,
+  void ShowMyDate(BuildContext context) async {
+    DateTime? selectDate = await showDatePicker(
+      context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(Duration(days: 365))) ?? selectDate);
-    setState(() {});
+      lastDate: DateTime.now().add(Duration(days: 365)),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light().copyWith(
+              primary: AppColors.backgroundBar,
+            ),
+            textTheme: TextTheme(
+              bodyText1: TextStyle(color: AppColors.backgroundBar), // Change font color here
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+    if (selectDate != null) {
+      setState(() {
+        selectDate = selectDate;
+      });
+    }
   }
 
   void addTodoFirebase() {
