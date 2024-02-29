@@ -73,7 +73,7 @@ class _AddBottomState extends State<AddBottom> {
 
   void ShowMyDate() async{
     selectDate = (await showDatePicker(context: context,
-      initialDate: selectDate,
+      initialDate: DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(Duration(days: 365))) ?? selectDate);
     setState(() {});
