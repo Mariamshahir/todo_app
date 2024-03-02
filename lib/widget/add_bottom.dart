@@ -32,27 +32,32 @@ class _AddBottomState extends State<AddBottom> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text("Add new Task",textAlign:TextAlign.center,style: AppTheme.title,),
-             TextField(
+            TextField(
               controller: taskController,
-              decoration: const InputDecoration(
-                labelText:"enter your task",
+              decoration: InputDecoration(
+                labelText: "Enter your task",
                 labelStyle: AppTheme.task,
-              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.gray,width:1.5,style: BorderStyle.solid))
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.gray, width: 1.5, style: BorderStyle.solid),
+                ),
               ),
             ),
-             TextField(
+            TextField(
               controller: descriptionController,
-              decoration: const InputDecoration(
-                labelText:"enter your description",
-                  labelStyle: AppTheme.task,
-                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.gray,width:1.5,style: BorderStyle.solid))
-              ),
+              decoration: InputDecoration(
+                labelText: "Enter your description",
+                labelStyle: AppTheme.task,
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.gray, width: 1.5, style: BorderStyle.solid),
+                ),
+                ),
             ),
+
             const SizedBox(height: 33,),
             const Text("Select time",textAlign: TextAlign.start,style: AppTheme.selectTime),
             InkWell(
                 onTap: (){ShowMyDate(context);},
-                child:  Text("${selectDate.month}/${selectDate.day}/${selectDate.year}",style: AppTheme.time,textAlign: TextAlign.center,)),
+                child:  Text("${selectDate.day}/${selectDate.month}/${selectDate.year}",style: AppTheme.time,textAlign: TextAlign.center,)),
             const Spacer(),
             buildElevatedButton()
           ],
@@ -72,7 +77,7 @@ class _AddBottomState extends State<AddBottom> {
   }
 
   void ShowMyDate(BuildContext context) async {
-    DateTime? selectDate = await showDatePicker(
+    DateTime? selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
@@ -91,25 +96,21 @@ class _AddBottomState extends State<AddBottom> {
         );
       },
     );
-    if (selectDate != null) {
+    if (selectedDate != null) {
       setState(() {
-        selectDate = selectDate;
+        selectDate = selectedDate;
       });
     }
   }
-
   void addTodoFirebase() {
-    CollectionReference todoCollection= FirebaseFirestore.instance.collection(Todo.collectionName);
-    DocumentReference doc = todoCollection.doc();
-    doc.set({
-      "id": doc.id,
-      "tast": taskController.text,
-      "description": descriptionController.text,
-      "date": selectDate,
-      "isDone": false
-    }).onError((error, stackTrace) {}).timeout(Duration(milliseconds: 300),onTimeout: (){
-      listProvider.refreshTodo();
-      Navigator.pop(context);
+    CollectionReference todoCollection = FirebaseFirestore.instance.collection("todo");
+    todoCollection.doc().set({
+      "title" : taskController.text,
+      "description" : descriptionController.text,
+      "date":selectDate,
+      "isDone" : false
     });
   }
+
 }
+
