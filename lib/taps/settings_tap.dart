@@ -41,20 +41,30 @@ class _SettingsState extends State<Settings> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
-                    child: Center(
-                      child: Text(context.getLocalizations.settings, style: AppTheme.titleSetting.copyWith(color: AppColors.white)),
-                    ),
+                    child: Text(context.getLocalizations.settings, style: AppTheme.titleSetting.copyWith(color: AppColors.white)),
                   ),
                 ],
               ),
               SizedBox(height: 12,),
-              Text(context.getLocalizations.language, style: AppTheme.title),
+              Padding(
+                padding: const EdgeInsets.only(top: 25,left: 38),
+                child: Text(context.getLocalizations.language, style: AppTheme.title),
+              ),
               SizedBox(height: 20,),
-              buildLanguageDropDownButton(),
+              Padding(
+                padding: const EdgeInsets.only(left: 56,right: 37),
+                child: buildLanguageDropDownButton(),
+              ),
               SizedBox(height: 20,),
-              Text(context.getLocalizations.mode, style: AppTheme.title),
+              Padding(
+                padding: const EdgeInsets.only(left: 38),
+                child: Text(context.getLocalizations.mode, style: AppTheme.title),
+              ),
               SizedBox(height: 20,),
-              buildLanguageDropDownButton2(),
+              Padding(
+                padding: const EdgeInsets.only(left: 56,right: 37),
+                child: buildLanguageDropDownButton2(),
+              ),
             ],
           ),
         ),
