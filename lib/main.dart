@@ -14,7 +14,6 @@ import 'package:todo/utils/aap_theme.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
-  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: const FirebaseOptions(apiKey: "AIzaSyAsZzYRoZ230qYBQITuoY9KM0_Vf6lvWDY",
       appId: "todo-app-10247", projectId: "todo-app-10247", messagingSenderId: "todo-app-10247"));
 
