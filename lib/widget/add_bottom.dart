@@ -109,6 +109,8 @@ class _AddBottomState extends State<AddBottom> {
       "description" : descriptionController.text,
       "date":selectDate,
       "isDone" : false
+    }).timeout(Duration(milliseconds: 300),onTimeout: (){
+      Navigator.pop(context);
     });
   }
 
