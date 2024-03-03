@@ -41,7 +41,7 @@ class _SettingsState extends State<Settings> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
-                    child: Text(context.getLocalizations.settings, style: AppTheme.titleSetting.copyWith(color: AppColors.white)),
+                    child: Center(child: Text(context.getLocalizations.settings, style: AppTheme.titleSetting.copyWith(color: AppColors.white))),
                   ),
                 ],
               ),
