@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/provider/theme_provider.dart';
-import 'package:todo/taps/list_tap.dart';
-import 'package:todo/taps/settings_tap.dart';
+import 'package:todo/tabs/list_tab.dart';
+import 'package:todo/tabs/settings_tab.dart';
 import 'package:todo/utils/app_colors.dart';
 import 'package:todo/utils/app_language.dart';
 import 'package:todo/bottoms/add_bottom.dart';
@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> taps = [
-    ListTap(),
+    ListTab(),
     Settings()
   ];
   late ThemeProvider themeProvider;

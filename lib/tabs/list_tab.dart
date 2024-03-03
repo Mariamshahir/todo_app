@@ -7,14 +7,14 @@
   import 'package:todo/widget/task_widget.dart';
   import 'package:easy_date_timeline/easy_date_timeline.dart';
 
-  class ListTap extends StatefulWidget {
-    const ListTap({super.key});
+  class ListTab extends StatefulWidget {
+    const ListTab({super.key});
 
     @override
-    State<ListTap> createState() => _ListTapState();
+    State<ListTab> createState() => _ListTabState();
   }
 
-class _ListTapState extends State<ListTap> {
+class _ListTabState extends State<ListTab> {
   late ListProvider listProvider;
   List<Todo> todos=[];
   late LanguageProvider provider;

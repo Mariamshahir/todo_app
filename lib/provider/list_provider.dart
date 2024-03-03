@@ -16,7 +16,7 @@ class ListProvider extends ChangeNotifier {
     CollectionReference todoCollection =
     FirebaseFirestore.instance.collection(Todo.collectionName);
     QuerySnapshot querySnapshot =
-    await todoCollection.where("dateTime", isEqualTo: selectedDate).get();
+    await todoCollection.get();
     todos = querySnapshot.docs.map((doc) {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
       Timestamp dateAsTime = data["dateTime"];
@@ -27,7 +27,14 @@ class ListProvider extends ChangeNotifier {
         dateTime: dateAsTime.toDate(),
         isDone: data["isDone"],
       );
+    }).where((todo) {
+      if(todo.dateTime.year == selectedDate.year
+          && todo.dateTime.month == selectedDate.month
+          && todo.dateTime.day == selectedDate.day){
+        return true;
+      }else {return false ;}
     }).toList();
+    print("todos: $todos");
     notifyListeners();
   }
 }
