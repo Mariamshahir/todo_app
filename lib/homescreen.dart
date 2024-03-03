@@ -5,7 +5,7 @@ import 'package:todo/taps/list_tap.dart';
 import 'package:todo/taps/settings_tap.dart';
 import 'package:todo/utils/app_colors.dart';
 import 'package:todo/utils/app_language.dart';
-import 'package:todo/widget/add_bottom.dart';
+import 'package:todo/bottoms/add_bottom.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "homescreen";
