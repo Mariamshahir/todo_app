@@ -4,11 +4,15 @@ import 'package:todo/utils/app_assets.dart';
 import 'package:todo/utils/app_colors.dart';
 import 'package:todo/models/todo_model.dart';
 
-class TaskWidget extends StatelessWidget {
+class TaskWidget extends StatefulWidget {
   final Todo todo;
   const TaskWidget({super.key, required this.todo});
 
+  @override
+  State<TaskWidget> createState() => _TaskWidgetState();
+}
 
+class _TaskWidgetState extends State<TaskWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,18 +37,18 @@ class TaskWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(todo.task,style: AppTheme.textTaskTitle,maxLines: 1,overflow: TextOverflow.ellipsis,),
+                Text(widget.todo.task,style: AppTheme.textTaskTitle,maxLines: 1,overflow: TextOverflow.ellipsis,),
                 SizedBox(height: 8,),
                 Row(
                   children: [
                     Icon(Icons.timelapse),
-                    Text(todo.dateTime as String,style: AppTheme.numbers,),
+                    Text(widget.todo.dateTime as String,style: AppTheme.numbers,),
                     SizedBox(width: 10,),
-                    Text(todo.description,style: AppTheme.numbers,)
+                    Text(widget.todo.description,style: AppTheme.numbers,)
                   ],
                 )
               ],
-            ), 
+            ),
           ),
           InkWell(
             onTap: (){},
