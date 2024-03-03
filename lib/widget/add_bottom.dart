@@ -71,7 +71,7 @@ class _AddBottomState extends State<AddBottom> {
       addTodoFirebase();
     }, child: Text("Add",
             style: AppTheme.textTaskTitle.copyWith(color: AppColors.white),),
-            style: ElevatedButton.styleFrom(primary: AppColors.backgroundBar,
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.backgroundBar,
                 padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),);
   }
@@ -89,7 +89,7 @@ class _AddBottomState extends State<AddBottom> {
               primary: AppColors.backgroundBar,
             ),
             textTheme: TextTheme(
-              bodyText1: TextStyle(color: AppColors.backgroundBar), // Change font color here
+               bodyLarge: TextStyle(color: AppColors.backgroundBar), // Change font color here
             ),
           ),
           child: child!,
@@ -103,8 +103,10 @@ class _AddBottomState extends State<AddBottom> {
     }
   }
   void addTodoFirebase() {
-    CollectionReference todoCollection = FirebaseFirestore.instance.collection("todo");
-    todoCollection.doc().set({
+    CollectionReference todoCollection = FirebaseFirestore.instance.collection(Todo.collectionName);
+    DocumentReference doc =todoCollection.doc();
+    doc.set({
+      "id" : doc.id,
       "title" : taskController.text,
       "description" : descriptionController.text,
       "date":selectDate,
@@ -113,6 +115,5 @@ class _AddBottomState extends State<AddBottom> {
       Navigator.pop(context);
     });
   }
-
 }
 

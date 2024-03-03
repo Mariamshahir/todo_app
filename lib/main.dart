@@ -26,7 +26,7 @@ void main() async{
   await themeProvider.setItems();
   runApp(MultiProvider(
       providers: [
-         ChangeNotifierProvider(create: (_) => ListProvider()),
+        ChangeNotifierProvider(create: (_) => ListProvider()),
         ChangeNotifierProvider(create: (_) => languageProvider),
         ChangeNotifierProvider(create: (_) => themeProvider),
       ],

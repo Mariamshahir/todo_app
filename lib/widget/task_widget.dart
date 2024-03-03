@@ -39,19 +39,23 @@ class TaskWidget extends StatelessWidget {
                   children: [
                     Icon(Icons.timelapse),
                     Text(todo.dateTime as String,style: AppTheme.numbers,),
+                    SizedBox(width: 10,),
                     Text(todo.description,style: AppTheme.numbers,)
                   ],
                 )
               ],
-            ),
+            ), 
           ),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 7.38,horizontal: 21.6),
-            decoration: BoxDecoration(
-              color: AppColors.backgroundBar,
-              borderRadius: BorderRadius.circular(10)
+          InkWell(
+            onTap: (){},
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 7.38,horizontal: 21.6),
+              decoration: BoxDecoration(
+                color: AppColors.backgroundBar,
+                borderRadius: BorderRadius.circular(10)
+              ),
+              child: Image.asset(AppAssets.done),
             ),
-            child: Image.asset(AppAssets.done),
           )
         ],
       ),
