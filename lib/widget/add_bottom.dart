@@ -79,7 +79,7 @@ class _AddBottomState extends State<AddBottom> {
   void ShowMyDate(BuildContext context) async {
     DateTime? selectedDate = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: selectDate,
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(Duration(days: 365)),
       builder: (BuildContext context, Widget? child) {
