@@ -17,9 +17,9 @@ class ThemeProvider extends ChangeNotifier{
     }
   }
 
-  toggleTheme(bool darkThemeSwitchValue){
-    currentTheme = darkThemeSwitchValue ? ThemeMode.dark : ThemeMode.light;
-    saveTheme(darkThemeSwitchValue);
+  toggleTheme(bool newLocale){
+    currentTheme = newLocale ? ThemeMode.dark : ThemeMode.light;
+    saveTheme(newLocale);
     notifyListeners();
   }
 
