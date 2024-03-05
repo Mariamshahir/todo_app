@@ -2,5 +2,10 @@
   "toDoList": "قائمة الاعمال",
   "settings": "الاعدادات",
   "language": "اللغه",
-  "mode": "وضع"
+  "mode": "وضع",
+  "addNewTask": "اضافه مهام جديده",
+  "selectTime": "تحديد الوقت",
+  "enterYourTask": "ادخل المهام",
+  "enterYourDescription": "ادخل الوصف",
+  "add": "اضافه"
 }

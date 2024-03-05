@@ -2,5 +2,10 @@
   "toDoList": "To Do List",
   "settings": "Settings",
   "language": "Language",
-  "mode": "Mode"
+  "mode": "Mode",
+  "addNewTask": "Add New Task",
+  "selectTime": "Select Time",
+  "enterYourTask": "Enter your task",
+  "enterYourDescription": "Enter your description",
+  "add": "Add"
 }
