@@ -33,21 +33,19 @@ class _ListTabState extends State<ListTab> {
   Widget build(BuildContext context) {
     listProvider=Provider.of<ListProvider>(context);
     themeProvider=Provider.of<ThemeProvider>(context);
-
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          buildEasyInfiniteDateTimeLine(),
-          SingleChildScrollView(
-            child: ListView.builder(
-                itemCount:listProvider.todos.length,
-                itemBuilder: (context,index){
-                  return TaskWidget(todo: listProvider.todos[index],);
-                },          ),
+    return Column(
+      children: [
+        Expanded(child: buildEasyInfiniteDateTimeLine()),
+        Expanded(
+          flex: 5,
+          child: ListView.builder(
+              itemCount:listProvider.todos.length,
+              itemBuilder: (context,index){
+                return TaskWidget(todo: listProvider.todos[index],);
+              },          ),
           )
-          ],
-        ),
-    );
+        ],
+      );
     }
 
     Widget buildEasyInfiniteDateTimeLine() {
