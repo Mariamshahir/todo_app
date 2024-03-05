@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/utils/app_assets.dart';
 import 'package:todo/utils/app_colors.dart';
 

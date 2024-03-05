@@ -34,20 +34,20 @@ class _ListTabState extends State<ListTab> {
     listProvider=Provider.of<ListProvider>(context);
     themeProvider=Provider.of<ThemeProvider>(context);
 
-    return Column(
-      children: [
-        buildEasyInfiniteDateTimeLine(),
-        Expanded(
-          child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          buildEasyInfiniteDateTimeLine(),
+          SingleChildScrollView(
             child: ListView.builder(
                 itemCount:listProvider.todos.length,
                 itemBuilder: (context,index){
                   return TaskWidget(todo: listProvider.todos[index],);
                 },          ),
-          ),
           )
-        ],
-      );
+          ],
+        ),
+    );
     }
 
     Widget buildEasyInfiniteDateTimeLine() {
