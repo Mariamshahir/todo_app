@@ -6,20 +6,9 @@ import 'package:todo/utils/app_colors.dart';
 
 class ThemeProvider extends ChangeNotifier{
   ThemeMode currentTheme = ThemeMode.light;
-  SharedPreferences? sharedPreferences;
 
-  Future<void> setItems()async{
-    sharedPreferences=await SharedPreferences.getInstance();
-    if(getTheme()==null){
-      currentTheme=ThemeMode.light;
-    }else{
-      currentTheme = getTheme()! ? ThemeMode.dark : ThemeMode.light;
-    }
-  }
-
-  toggleTheme(bool newLocale){
-    currentTheme = newLocale ? ThemeMode.dark : ThemeMode.light;
-    saveTheme(newLocale);
+  void changeTheme(ThemeMode selectedThemeMode){
+    currentTheme = selectedThemeMode;
     notifyListeners();
   }
 
@@ -27,11 +16,4 @@ class ThemeProvider extends ChangeNotifier{
 
   Color get background => currentTheme == ThemeMode.light ? AppColors.background: AppColors.backgroundDark;
 
-  Future<void> saveTheme(bool isDark)async{
-    await sharedPreferences!.setBool('isDark', isDark);
-  }
-
-  bool? getTheme(){
-    return sharedPreferences!.getBool('isDark');
-  }
 }

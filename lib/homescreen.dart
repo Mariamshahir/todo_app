@@ -50,27 +50,24 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   );
 
-  Widget buildBottomNavigationBar(context) =>Theme(
-      data: Theme.of(context).copyWith(canvasColor: Theme.of(context).primaryColor),
-        child: BottomAppBar(
-          color: AppColors.white,
-          shape: CircularNotchedRectangle(),
-          notchMargin: 5,
-          elevation: 0,
-          clipBehavior: Clip.hardEdge,
-          child: SingleChildScrollView(
-            child: BottomNavigationBar(
-                currentIndex: currentIndexTab,
-                onTap: (newTabIndex){
-            currentIndexTab = newTabIndex;
-            setState(() {});
-                }, items: const[
-                BottomNavigationBarItem(icon: Icon(Icons.list_outlined,),label: "List"),
-                BottomNavigationBarItem(icon: Icon(Icons.settings),label: "Setting")
-              ],),
-          ),
-        ),
-      );
+  Widget buildBottomNavigationBar(context) =>BottomAppBar(
+    color: AppColors.white,
+    shape: CircularNotchedRectangle(),
+    notchMargin: 5,
+    elevation: 0,
+    clipBehavior: Clip.hardEdge,
+    child: SingleChildScrollView(
+      child: BottomNavigationBar(
+          currentIndex: currentIndexTab,
+          onTap: (newTabIndex){
+      currentIndexTab = newTabIndex;
+      setState(() {});
+          }, items: const[
+          BottomNavigationBarItem(icon: Icon(Icons.list_outlined,),label: "List"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings),label: "Setting")
+        ],),
+    ),
+  );
 
   FloatingActionButton buildFloatingActionButton() => FloatingActionButton(
     onPressed: (){
@@ -83,4 +80,3 @@ class _HomeScreenState extends State<HomeScreen> {
     },child: Icon(Icons.add,color: AppColors.white,),
   );
   }
-

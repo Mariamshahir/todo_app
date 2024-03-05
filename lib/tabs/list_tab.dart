@@ -3,6 +3,7 @@
   import 'package:todo/models/todo_model.dart';
   import 'package:todo/provider/language_provider.dart';
   import 'package:todo/provider/list_provider.dart';
+import 'package:todo/provider/theme_provider.dart';
   import 'package:todo/utils/app_colors.dart';
   import 'package:todo/widget/task_widget.dart';
   import 'package:easy_date_timeline/easy_date_timeline.dart';
@@ -18,6 +19,7 @@ class _ListTabState extends State<ListTab> {
   late ListProvider listProvider;
   List<Todo> todos=[];
   late LanguageProvider provider;
+  late ThemeProvider themeProvider;
 
   @override
   void initState() {
@@ -30,15 +32,19 @@ class _ListTabState extends State<ListTab> {
   @override
   Widget build(BuildContext context) {
     listProvider=Provider.of<ListProvider>(context);
+    themeProvider=Provider.of<ThemeProvider>(context);
+
     return Column(
       children: [
         buildEasyInfiniteDateTimeLine(),
         Expanded(
-          child: ListView.builder(
-              itemCount:listProvider.todos.length,
-              itemBuilder: (context,index){
-                return TaskWidget(todo: listProvider.todos[index],);
-              },          ),
+          child: SingleChildScrollView(
+            child: ListView.builder(
+                itemCount:listProvider.todos.length,
+                itemBuilder: (context,index){
+                  return TaskWidget(todo: listProvider.todos[index],);
+                },          ),
+          ),
           )
         ],
       );
