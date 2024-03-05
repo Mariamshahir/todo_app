@@ -11,18 +11,18 @@ class ListProvider extends ChangeNotifier {
     refreshTodo();
   }
 
-  void refreshTodo() async {
+  Future<void> refreshTodo() async {
     todos.clear();
     CollectionReference todoCollection =
     FirebaseFirestore.instance.collection(Todo.collectionName);
     QuerySnapshot querySnapshot =
-    await todoCollection.where("dateTime", isEqualTo: selectedDate).get();
+    await todoCollection.get();
     todos = querySnapshot.docs.map((doc) {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-      Timestamp dateAsTime = data["dateTime"];
+      Timestamp dateAsTime = data["date"];
       return Todo(
         id: data["id"],
-        task: data["task"],
+        task: data["title"],
         description: data["description"],
         dateTime: dateAsTime.toDate(),
         isDone: data["isDone"],

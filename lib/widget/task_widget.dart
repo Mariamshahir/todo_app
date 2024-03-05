@@ -13,6 +13,8 @@ class TaskWidget extends StatefulWidget {
 }
 
 class _TaskWidgetState extends State<TaskWidget> {
+  late DateTime dateTime = widget.todo.dateTime??DateTime.now();
+  late String date = "${dateTime.day}/${dateTime.month}/${dateTime.year}";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,14 +39,16 @@ class _TaskWidgetState extends State<TaskWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(widget.todo.task,style: AppTheme.textTaskTitle,maxLines: 1,overflow: TextOverflow.ellipsis,),
-                SizedBox(height: 8,),
+                Text(widget.todo.task?? "",
+                  style: AppTheme.textTaskTitle,maxLines: 1,overflow: TextOverflow.ellipsis,),
+                const SizedBox(height: 8,),
                 Row(
                   children: [
-                    Icon(Icons.timelapse),
-                    Text(widget.todo.dateTime as String,style: AppTheme.numbers,),
-                    SizedBox(width: 10,),
-                    Text(widget.todo.description,style: AppTheme.numbers,)
+                    const Icon(Icons.timelapse),
+                    const SizedBox(width: 5,),
+                    Text(date,style: AppTheme.numbers,),
+                    const SizedBox(width: 10,),
+                    Text(widget.todo.description?? "",style: AppTheme.numbers,)
                   ],
                 )
               ],
@@ -53,7 +57,7 @@ class _TaskWidgetState extends State<TaskWidget> {
           InkWell(
             onTap: (){},
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 7.38,horizontal: 21.6),
+              padding: const EdgeInsets.symmetric(vertical: 7.38,horizontal: 21.6),
               decoration: BoxDecoration(
                 color: AppColors.backgroundBar,
                 borderRadius: BorderRadius.circular(10)

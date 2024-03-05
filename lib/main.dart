@@ -24,9 +24,13 @@ void main() async{
 
   ThemeProvider themeProvider =ThemeProvider();
   await themeProvider.setItems();
+
+
+  ListProvider listProvider =ListProvider();
+  await listProvider.refreshTodo();
   runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ListProvider()),
+        ChangeNotifierProvider(create: (_) => listProvider),
         ChangeNotifierProvider(create: (_) => languageProvider),
         ChangeNotifierProvider(create: (_) => themeProvider),
       ],

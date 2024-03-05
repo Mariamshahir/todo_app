@@ -29,15 +29,15 @@ class _ListTabState extends State<ListTab> {
 
   @override
   Widget build(BuildContext context) {
-    listProvider=Provider.of(context);
+    listProvider=Provider.of<ListProvider>(context);
     return Column(
       children: [
         buildEasyInfiniteDateTimeLine(),
         Expanded(
           child: ListView.builder(
-              itemCount:todos.length,
+              itemCount:listProvider.todos.length,
               itemBuilder: (context,index){
-                return TaskWidget(todo: todos[index],);
+                return TaskWidget(todo: listProvider.todos[index],);
               },          ),
           )
         ],
