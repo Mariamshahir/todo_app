@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/provider/theme_provider.dart';
 import 'package:todo/utils/aap_theme.dart';
 import 'package:todo/utils/app_assets.dart';
 import 'package:todo/utils/app_colors.dart';
@@ -15,8 +17,10 @@ class TaskWidget extends StatefulWidget {
 class _TaskWidgetState extends State<TaskWidget> {
   late DateTime dateTime = widget.todo.dateTime??DateTime.now();
   late String date = "${dateTime.day}/${dateTime.month}/${dateTime.year}";
+  late ThemeProvider themeProvider;
   @override
   Widget build(BuildContext context) {
+    themeProvider=Provider.of<ThemeProvider>(context);
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,

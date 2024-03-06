@@ -35,9 +35,8 @@ class _ListTabState extends State<ListTab> {
     themeProvider=Provider.of<ThemeProvider>(context);
     return Column(
       children: [
-        Expanded(child: buildEasyInfiniteDateTimeLine()),
+        buildEasyInfiniteDateTimeLine(),
         Expanded(
-          flex: 5,
           child: ListView.builder(
               itemCount:listProvider.todos.length,
               itemBuilder: (context,index){
@@ -49,9 +48,6 @@ class _ListTabState extends State<ListTab> {
     }
 
     Widget buildEasyInfiniteDateTimeLine() {
-      return Consumer<LanguageProvider>(
-          builder: (context, languageProvider, _) {
-        String selectLanguage = languageProvider.currentLocale;
       return Stack(
         children: [
           Positioned.fill(
@@ -91,11 +87,9 @@ class _ListTabState extends State<ListTab> {
                 ),
               );
             },
-            locale: selectLanguage,
           ),
         ],
       );
-          },
-      );
+
     }
 }
