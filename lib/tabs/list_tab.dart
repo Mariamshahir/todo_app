@@ -62,6 +62,7 @@ class _ListTabState extends State<ListTab> {
             ),
           ),
           EasyInfiniteDateTimeLine(
+            locale: selectLanguage,
             firstDate: DateTime.now().subtract(Duration(days: 365)),
             focusDate: listProvider.selectedDate,
             lastDate: DateTime.now().add(Duration(days: 365)),
@@ -90,7 +91,6 @@ class _ListTabState extends State<ListTab> {
                 ),
               );
             },
-            locale: selectLanguage,
           ),
         ],
       );
