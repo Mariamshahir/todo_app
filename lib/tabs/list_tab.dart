@@ -48,6 +48,9 @@ class _ListTabState extends State<ListTab> {
     }
 
     Widget buildEasyInfiniteDateTimeLine() {
+      return Consumer<LanguageProvider>(
+          builder: (context, languageProvider, _) {
+        String selectLanguage = languageProvider.currentLocale;
       return Stack(
         children: [
           Positioned.fill(
@@ -87,9 +90,11 @@ class _ListTabState extends State<ListTab> {
                 ),
               );
             },
+            locale: selectLanguage,
           ),
         ],
       );
-
+          },
+      );
     }
 }
