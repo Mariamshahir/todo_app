@@ -20,7 +20,6 @@ class ThemeProvider extends ChangeNotifier{
     currentTheme = selectMode;
     saveTheme(selectMode == ThemeMode.dark);
     notifyListeners();
-    print("theme");
   }
 
   String get splash => currentTheme == ThemeMode.light ? AppAssets.splash: AppAssets.darkSplash;

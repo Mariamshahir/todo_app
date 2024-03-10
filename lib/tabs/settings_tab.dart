@@ -63,7 +63,7 @@ class _SettingsState extends State<Settings> {
               SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.only(left: 56,right: 37),
-                child: buildLanguageDropDownButton2(),
+                child: buildThemeDropDownButton(),
               ),
             ],
           ),
@@ -97,7 +97,7 @@ class _SettingsState extends State<Settings> {
     );
   }
 
-  Widget buildLanguageDropDownButton2() {
+  Widget buildThemeDropDownButton() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(color:AppColors.white,border: Border.all(color: AppColors.backgroundBar)),
@@ -114,7 +114,8 @@ class _SettingsState extends State<Settings> {
         isExpanded: true,
         onChanged: (newValue) {
           selectMode = newValue!;
-          provider.setCurrentLocale(selectMode);
+          themeProvider.currentTheme =selectMode  == "dark" ? ThemeMode.dark : ThemeMode.light;
+         themeProvider.notifyListeners();
           setState(() {});
         },
       ),
