@@ -5,6 +5,7 @@
   import 'package:todo/provider/list_provider.dart';
 import 'package:todo/provider/theme_provider.dart';
   import 'package:todo/utils/app_colors.dart';
+import 'package:todo/widget/edit_widget.dart';
   import 'package:todo/widget/task_widget.dart';
   import 'package:easy_date_timeline/easy_date_timeline.dart';
 
@@ -40,7 +41,7 @@ class _ListTabState extends State<ListTab> {
           child: ListView.builder(
               itemCount:listProvider.todos.length,
               itemBuilder: (context,index){
-                return TaskWidget(todo: listProvider.todos[index],);
+                return InkWell(onTap: (){EditTask();},child: TaskWidget(todo: listProvider.todos[index],));
               },          ),
           )
         ],
@@ -48,9 +49,9 @@ class _ListTabState extends State<ListTab> {
     }
 
     Widget buildEasyInfiniteDateTimeLine() {
-      return Consumer<LanguageProvider>(
-          builder: (context, languageProvider, _) {
-        String selectLanguage = languageProvider.currentLocale;
+      // return Consumer<LanguageProvider>(
+      //     builder: (context, languageProvider, _) {
+      //   String selectLanguage = languageProvider.currentLocale;
       return Stack(
         children: [
           Positioned.fill(
@@ -62,7 +63,7 @@ class _ListTabState extends State<ListTab> {
             ),
           ),
           EasyInfiniteDateTimeLine(
-            locale: selectLanguage,
+            // locale: selectLanguage,
             firstDate: DateTime.now().subtract(Duration(days: 365)),
             focusDate: listProvider.selectedDate,
             lastDate: DateTime.now().add(Duration(days: 365)),
@@ -94,7 +95,7 @@ class _ListTabState extends State<ListTab> {
           ),
         ],
       );
-          },
-      );
+      //     },
+      // );
     }
 }
