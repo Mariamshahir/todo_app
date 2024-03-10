@@ -207,8 +207,9 @@ class _LoginState extends State<Login> {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
       Myuser.currentUser = await getUserFromUserFromFireStore(credential.user!.uid);
-      Navigator.pushNamed(context, HomeScreen.routeName);
       DialogUtils.hideLoading(context);
+      Navigator.pushNamed(context, HomeScreen.routeName);
+
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
