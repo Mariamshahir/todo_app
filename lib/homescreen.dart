@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/models/myuser.dart';
 import 'package:todo/provider/theme_provider.dart';
 import 'package:todo/tabs/list_tab.dart';
 import 'package:todo/tabs/settings_tab.dart';
 import 'package:todo/utils/app_colors.dart';
-import 'package:todo/utils/app_language.dart';
 import 'package:todo/bottoms/add_bottom.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,15 +17,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> taps = [
-    ListTab(),
-    Settings()
+    const ListTab(),
+    const Settings()
   ];
   late ThemeProvider themeProvider;
   int currentIndexTab=0;
 
   @override
   Widget build(BuildContext context) {
-    themeProvider=Provider.of(context);
+    themeProvider=Provider.of<ThemeProvider>(context);
     return Container(
       decoration: BoxDecoration(
         color: themeProvider.background
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     title: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(context.getLocalizations.toDoList),
+        Text("Welcome ${Myuser.currentUser!.userName}"),
       ],
     ),
   );
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
       data: Theme.of(context).copyWith(canvasColor: Theme.of(context).primaryColor),
         child: BottomAppBar(
           color: AppColors.white,
-          shape: CircularNotchedRectangle(),
+          shape: const CircularNotchedRectangle(),
           notchMargin: 5,
           elevation: 0,
           clipBehavior: Clip.hardEdge,
@@ -77,10 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
       showModalBottomSheet(context: context, isScrollControlled: true,builder: (context){
         return Padding(
           padding: MediaQuery.of(context).viewInsets,
-          child: AddBottom(),
+          child: const AddBottom(),
         );
       });
-    },child: Icon(Icons.add,color: AppColors.white,),
+    },child: const Icon(Icons.add,color: AppColors.white,),
   );
   }
 

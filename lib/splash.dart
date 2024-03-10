@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/homescreen.dart';
 import 'package:todo/provider/theme_provider.dart';
+import 'package:todo/user/login.dart';
 
 class Splash extends StatefulWidget {
   static const String routeName = "splash";
@@ -28,7 +28,7 @@ class _SplashState extends State<Splash> {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     Future.delayed(Duration(seconds: 3),(){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>HomeScreen(), ));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>Login(), ));
     });
   }
 

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -9,6 +8,8 @@ import 'package:todo/provider/language_provider.dart';
 import 'package:todo/provider/list_provider.dart';
 import 'package:todo/provider/theme_provider.dart';
 import 'package:todo/splash.dart';
+import 'package:todo/user/login.dart';
+import 'package:todo/user/register.dart';
 import 'package:todo/utils/aap_theme.dart';
 
 void main() async{
@@ -17,7 +18,7 @@ void main() async{
   await Firebase.initializeApp(options: const FirebaseOptions(apiKey: "AIzaSyAsZzYRoZ230qYBQITuoY9KM0_Vf6lvWDY",
       appId: "todo-app-10247", projectId: "todo-app-10247", messagingSenderId: "todo-app-10247"));
 
-  await FirebaseFirestore.instance.disableNetwork();
+  //await FirebaseFirestore.instance.disableNetwork();
 
   LanguageProvider languageProvider =LanguageProvider();
   await languageProvider.setItems();
@@ -61,6 +62,8 @@ class MyApp extends StatelessWidget {
       routes: {
         Splash.routeName:(_) => Splash(),
         HomeScreen.routeName:(_) => HomeScreen(),
+        Login.routeName:(_) => Login(),
+        Register.routeName:(_) => Register()
       },
       initialRoute: Splash.routeName,
     );
