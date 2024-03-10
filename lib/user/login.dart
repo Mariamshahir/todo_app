@@ -167,17 +167,21 @@ class _LoginState extends State<Login> {
                                 onTap: (){
                                   Navigator.pushNamed(context, Register.routeName);
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Don't have an account ? Sign up now",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(color: Colors.black, fontSize: 15,decoration: TextDecoration.underline),
+                                  style: TextStyle(color: Colors.black,
+                                      fontSize: 15,
+                                      decoration: TextDecoration.underline),
                                 ),
                               ),
-                              SizedBox(height: 10),
-                              Text(
+                              const SizedBox(height: 10),
+                              const Text(
                                 "Forgot Password?",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.black, fontSize: 15,decoration: TextDecoration.underline),
+                                style: TextStyle(color: Colors.black,
+                                    fontSize: 15,
+                                    decoration: TextDecoration.underline),
                               ),
                             ],
                           ),
