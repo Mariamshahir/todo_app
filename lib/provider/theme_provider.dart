@@ -35,6 +35,8 @@ class ThemeProvider extends ChangeNotifier{
 
   Color get background => currentTheme == ThemeMode.light ? AppColors.background: AppColors.backgroundDark;
 
+  Color get logout => currentTheme == ThemeMode.light ? AppColors.white: AppColors.black;
+
   Color get buttonAppBar => currentTheme == ThemeMode.light ? AppColors.white: AppColors.cart;
 
   Color get calender => currentTheme == ThemeMode.light ? AppColors.black: AppColors.white;
