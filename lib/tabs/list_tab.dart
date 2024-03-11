@@ -153,6 +153,6 @@ class _ListTabState extends State<ListTab> {
   }
 
   void deleteTodo(Todo todo) {
-    listProvider.removeTodoItem(todo);
+    listProvider.removeTodo(todo);
   }
 }
