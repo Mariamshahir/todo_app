@@ -85,6 +85,7 @@ static ThemeData lightTheme = ThemeData(
   primaryColor: AppColors.backgroundBar,
   scaffoldBackgroundColor: AppColors.transparent,
   appBarTheme: const AppBarTheme(
+    iconTheme: IconThemeData(color: Colors.white),
     backgroundColor: AppColors.backgroundBar,
     elevation: 0,
     titleTextStyle: appBarTextStyle,
@@ -126,6 +127,7 @@ static ThemeData darkTheme = ThemeData(
   primaryColor: AppColors.backgroundBar,
   scaffoldBackgroundColor: AppColors.transparent,
   appBarTheme: const AppBarTheme(
+    iconTheme: IconThemeData(color: Colors.black),
     backgroundColor: AppColors.backgroundBar,
     elevation: 0,
     titleTextStyle: appBarTextStyleDark,
