@@ -70,6 +70,16 @@ static const TextStyle numbersDark = TextStyle(
   fontWeight: FontWeight.w600,
   color: AppColors.white,
 );
+static const TextStyle titleDark = TextStyle(
+  fontSize:18,
+  fontWeight: FontWeight.bold,
+  color: AppColors.white,
+);
+static const TextStyle selectTimeDark = TextStyle(
+  fontSize:20,
+  fontWeight: FontWeight.w600,
+  color: AppColors.white,
+);
 
 static ThemeData lightTheme = ThemeData(
   primaryColor: AppColors.backgroundBar,
@@ -86,8 +96,8 @@ colorScheme:const ColorScheme(brightness: Brightness.light,
     onSecondary: AppColors.onblack,
     error: AppColors.error,
     onError: AppColors.error,
-    background: AppColors.background,
-    onBackground: AppColors.background,
+    background: AppColors.white,
+    onBackground: AppColors.white,
     surface: AppColors.black,
     onSurface: AppColors.black),
   bottomAppBarTheme: const BottomAppBarTheme(
@@ -117,34 +127,41 @@ static ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: AppColors.transparent,
   appBarTheme: const AppBarTheme(
     backgroundColor: AppColors.backgroundBar,
-    centerTitle: true,elevation: 0,
-    titleTextStyle: appBarTextStyle,
+    elevation: 0,
+    titleTextStyle: appBarTextStyleDark,
   ),
   colorScheme:const ColorScheme(brightness: Brightness.light,
-      primary: AppColors.background,
-      onPrimary: AppColors.onBackgroundBar,
+      primary: AppColors.backgroundDark,
+      onPrimary: AppColors.onBackgroundDark,
       secondary: AppColors.black,
       onSecondary: AppColors.onblack,
       error: AppColors.error,
       onError: AppColors.error,
-      background: AppColors.backgroundDark,
-      onBackground: AppColors.backgroundDark,
-      surface: AppColors.white,
-      onSurface: AppColors.white),
+      background: AppColors.white,
+      onBackground: AppColors.white,
+      surface: AppColors.black,
+      onSurface: AppColors.black),
+  bottomAppBarTheme: const BottomAppBarTheme(
+    elevation: 0,
+  ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    backgroundColor: AppColors.cart,
-    selectedItemColor: AppColors.cart,
+    landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
+    elevation: 0,
+    backgroundColor: AppColors.transparent,
+    selectedItemColor: AppColors.backgroundBar,
     selectedIconTheme: IconThemeData(size: 36),
-    unselectedIconTheme: IconThemeData(size: 34),
+    unselectedIconTheme: IconThemeData(size: 30),
     unselectedItemColor: AppColors.selectItem,
     showSelectedLabels: false,
     showUnselectedLabels: false,
   ),
-    floatingActionButtonTheme:  const FloatingActionButtonThemeData(
-      backgroundColor: AppColors.backgroundBar,
-      iconSize: 30,
-      shape:StadiumBorder(side: BorderSide(color: AppColors.cart,width: 4)),
-    )
+  floatingActionButtonTheme:  const FloatingActionButtonThemeData(
+    elevation: 0,
+    backgroundColor: AppColors.backgroundBar,
+    iconSize: 30,
+    shape:StadiumBorder(side: BorderSide(color: AppColors.cart,width: 4)),
+  ),
+
 );
 
 }

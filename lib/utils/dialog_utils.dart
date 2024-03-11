@@ -11,7 +11,7 @@ abstract class DialogUtils {
               children: [
                 Text(
                   "Loading...",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20,color: Colors.black),
                 ),
                 Spacer(),
                 CircularProgressIndicator(

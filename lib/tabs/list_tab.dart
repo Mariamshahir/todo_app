@@ -84,7 +84,7 @@ class _ListTabState extends State<ListTab> {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: AppColors.white),
+                        color: themeProvider.cart),
                     child: Column(
                       children: [
                         Spacer(),
@@ -92,7 +92,7 @@ class _ListTabState extends State<ListTab> {
                             style: TextStyle(
                                 color: isSelected
                                     ? AppColors.backgroundBar
-                                    : AppColors.black,
+                                    : themeProvider.calender,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15)),
                         Spacer(),
@@ -100,7 +100,7 @@ class _ListTabState extends State<ListTab> {
                             style: TextStyle(
                                 color: isSelected
                                     ? AppColors.backgroundBar
-                                    : AppColors.black,
+                                    : themeProvider.calender,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15)),
                         Spacer(),
@@ -108,7 +108,7 @@ class _ListTabState extends State<ListTab> {
                             style: TextStyle(
                                 color: isSelected
                                     ? AppColors.backgroundBar
-                                    : AppColors.black,
+                                    : themeProvider.calender,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15)),
                         Spacer(),

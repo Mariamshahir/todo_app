@@ -30,7 +30,7 @@ class _TaskWidgetState extends State<TaskWidget> {
       },
       child: Container(
         decoration: BoxDecoration(
-            color: AppColors.white, borderRadius: BorderRadius.circular(15)),
+            color: themeProvider.cart, borderRadius: BorderRadius.circular(15)),
         margin: const EdgeInsets.symmetric(vertical: 22, horizontal: 30),
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 18),
         child: Row(
@@ -66,14 +66,14 @@ class _TaskWidgetState extends State<TaskWidget> {
                       ),
                       Text(
                         date,
-                        style: AppTheme.numbers,
+                        style: themeProvider.numbertext,
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Text(
                         widget.todo.description ?? "",
-                        style: AppTheme.numbers,
+                        style: themeProvider.numbertext,
                       )
                     ],
                   )

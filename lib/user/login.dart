@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo/homescreen.dart';
 import 'package:todo/models/myuser.dart';
+import 'package:todo/provider/theme_provider.dart';
 import 'package:todo/user/register.dart';
-import 'package:todo/utils/app_assets.dart';
 import 'package:todo/utils/app_colors.dart';
 import 'package:todo/utils/dialog_utils.dart';
 
@@ -22,9 +23,10 @@ class _LoginState extends State<Login> {
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool obscureText = true;
-
+  late ThemeProvider themeProvider;
   @override
   Widget build(BuildContext context) {
+    themeProvider=Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
@@ -32,9 +34,9 @@ class _LoginState extends State<Login> {
       body: Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(AppAssets.splash), fit: BoxFit.fill)),
+                    image: AssetImage(themeProvider.splash), fit: BoxFit.fill)),
           ),
           Form(
             autovalidateMode: AutovalidateMode.onUserInteraction,

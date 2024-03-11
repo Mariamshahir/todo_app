@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:todo/models/todo_model.dart';
 import 'package:todo/provider/language_provider.dart';
 import 'package:todo/provider/list_provider.dart';
+import 'package:todo/provider/theme_provider.dart';
 import 'package:todo/utils/aap_theme.dart';
 import 'package:todo/utils/app_colors.dart';
 import 'package:todo/utils/app_language.dart';
@@ -21,20 +22,24 @@ class _AddBottomState extends State<AddBottom> {
   TextEditingController descriptionController = TextEditingController();
   late ListProvider listProvider;
   late LanguageProvider languageProvider;
+  late ThemeProvider themeProvider;
+
   @override
   Widget build(BuildContext context) {
     listProvider=Provider.of(context);
     languageProvider=Provider.of(context);
+    themeProvider=Provider.of(context);
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 22),
       height: MediaQuery.of(context).size.height*0.45,
-      color: AppColors.white,
+      color: themeProvider.addCart,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 44,vertical: 38.28),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(context.getLocalizations.addNewTask,textAlign:TextAlign.center,style: AppTheme.title,),
+            Text(context.getLocalizations.addNewTask,textAlign:TextAlign.center,style: themeProvider.text,),
             TextField(
               controller: taskController,
               decoration: InputDecoration(
@@ -57,7 +62,7 @@ class _AddBottomState extends State<AddBottom> {
             ),
 
             const SizedBox(height: 33,),
-             Text(context.getLocalizations.selectTime,textAlign: TextAlign.start,style: AppTheme.selectTime),
+             Text(context.getLocalizations.selectTime,textAlign: TextAlign.start,style: themeProvider.selectTime),
             InkWell(
                 onTap: (){ShowMyDate(context);},
                 child:  Text("${selectDate.day}/${selectDate.month}/${selectDate.year}",style: AppTheme.time,textAlign: TextAlign.center,)),

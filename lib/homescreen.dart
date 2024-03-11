@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildBottomNavigationBar(context) =>Theme(
       data: Theme.of(context).copyWith(canvasColor: Theme.of(context).primaryColor),
         child: BottomAppBar(
-          color: AppColors.white,
+          color: themeProvider.buttonAppBar,
           shape: const CircularNotchedRectangle(),
           notchMargin: 5,
           elevation: 0,

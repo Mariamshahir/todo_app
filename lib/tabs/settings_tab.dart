@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/provider/language_provider.dart';
 import 'package:todo/provider/theme_provider.dart';
-import 'package:todo/utils/aap_theme.dart';
 import 'package:todo/utils/app_colors.dart';
 import 'package:todo/utils/app_language.dart';
 
@@ -41,14 +40,14 @@ class _SettingsState extends State<Settings> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
-                    child: Center(child: Text(context.getLocalizations.settings, style: AppTheme.titleSetting.copyWith(color: AppColors.white))),
+                    child: Center(child: Text(context.getLocalizations.settings, style: themeProvider.title)),
                   ),
                 ],
               ),
               SizedBox(height: 12,),
               Padding(
                 padding: const EdgeInsets.only(top: 25,left: 38),
-                child: Text(context.getLocalizations.language, style: AppTheme.title),
+                child: Text(context.getLocalizations.language, style: themeProvider.text),
               ),
               SizedBox(height: 20,),
               Padding(
@@ -58,7 +57,7 @@ class _SettingsState extends State<Settings> {
               SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.only(left: 38),
-                child: Text(context.getLocalizations.mode, style: AppTheme.title),
+                child: Text(context.getLocalizations.mode, style: themeProvider.text),
               ),
               SizedBox(height: 20,),
               Padding(

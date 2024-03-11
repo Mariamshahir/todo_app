@@ -18,6 +18,7 @@ abstract class AppColors{
 
 
   static const Color backgroundDark= Color(0xff060E1E);
+  static const Color onBackgroundDark= Color(0xff08152d);
   static const Color cart= Color(0xff141922);
   static const Color textDark = Color(0xff060E1E);
 }
