@@ -11,6 +11,7 @@ import 'package:todo/splash.dart';
 import 'package:todo/user/login.dart';
 import 'package:todo/user/register.dart';
 import 'package:todo/utils/aap_theme.dart';
+import 'package:todo/widget/edit_widget.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,7 +64,8 @@ class MyApp extends StatelessWidget {
         Splash.routeName:(_) => Splash(),
         HomeScreen.routeName:(_) => HomeScreen(),
         Login.routeName:(_) => Login(),
-        Register.routeName:(_) => Register()
+        Register.routeName:(_) => Register(),
+        EditTask.routeName:(_) => EditTask()
       },
       initialRoute: Splash.routeName,
     );

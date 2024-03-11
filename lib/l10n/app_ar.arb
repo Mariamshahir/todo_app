@@ -10,5 +10,9 @@
   "add": "اضافه",
   "welcome": "مرحبا",
   "done": "تم !",
-  "delete": "Delete"
+  "delete": "Delete",
+  "editTask": "تعديل مهمه",
+  "save": "حذف",
+  "thisIsTitle": "هذه هذا العنوان",
+  "taskDetails":"تفاصيل المهمة"
 }

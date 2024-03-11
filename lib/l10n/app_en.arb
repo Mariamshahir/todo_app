@@ -10,5 +10,9 @@
   "add": "Add",
   "welcome": "Welcome",
   "done": "Done !",
-  "delete": "Delete"
+  "delete": "Delete",
+  "editTask": "Edit Task",
+  "save": "Save Changes",
+  "thisIsTitle": "This is title",
+  "taskDetails":"Task details"
 }
