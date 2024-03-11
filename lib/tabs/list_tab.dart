@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/models/todo_model.dart';
 import 'package:todo/provider/language_provider.dart';
@@ -34,6 +35,7 @@ class _ListTabState extends State<ListTab> {
   Widget build(BuildContext context) {
     listProvider = Provider.of<ListProvider>(context);
     themeProvider = Provider.of<ThemeProvider>(context);
+
     return Column(
       children: [
         buildEasyInfiniteDateTimeLine(),
@@ -41,8 +43,33 @@ class _ListTabState extends State<ListTab> {
           child: ListView.builder(
             itemCount: listProvider.todos.length,
             itemBuilder: (context, index) {
-              return TaskWidget(
-                todo: listProvider.todos[index],
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: 30),
+                child: Slidable(
+                  direction: Axis.horizontal,
+                  startActionPane: ActionPane(
+                    openThreshold: 0.5,
+                      closeThreshold: 0.8,
+                      dragDismissible:false,
+                      motion: StretchMotion(),
+                      children: [
+                        SlidableAction(
+                          spacing: 9,
+                          borderRadius:BorderRadius.circular(20),
+                          backgroundColor: AppColors.red,
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete,
+                          label:"Delete",
+                          onPressed: (BuildContext context) {
+                            deleteTodo(listProvider.todos[index]);
+                          },
+                        ),
+                      ]),
+                  child: Container(
+                    child: TaskWidget(todo: listProvider.todos[index],
+                    ),
+                  ),
+                ),
               );
             },
           ),
@@ -50,6 +77,7 @@ class _ListTabState extends State<ListTab> {
       ],
     );
   }
+
 
   Widget buildEasyInfiniteDateTimeLine() {
     return Consumer<LanguageProvider>(
@@ -122,5 +150,9 @@ class _ListTabState extends State<ListTab> {
         );
       },
     );
+  }
+
+  void deleteTodo(Todo todo) {
+    listProvider.removeTodoItem(todo);
   }
 }

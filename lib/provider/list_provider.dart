@@ -41,4 +41,17 @@ class ListProvider extends ChangeNotifier {
     selectedDate = DateTime.now();
     Myuser.currentUser = null;
   }
+
+  void removeTodoItem(Todo todo) async {
+    todos.remove(todo);
+    Myuser? currentUser = Myuser.currentUser;
+    if (currentUser != null) {
+      CollectionReference todoCollection = FirebaseFirestore.instance
+          .collection(Myuser.collectionName)
+          .doc(currentUser.id)
+          .collection(Todo.collectionName);
+      await todoCollection.doc(todo.id).delete();
+    }
+    notifyListeners();
+  }
 }
