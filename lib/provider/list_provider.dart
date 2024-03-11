@@ -42,7 +42,7 @@ class ListProvider extends ChangeNotifier {
     Myuser.currentUser = null;
   }
 
-  void removeTodoItem(Todo todo) async {
+  void removeTodo(Todo todo) async {
     todos.remove(todo);
     Myuser? currentUser = Myuser.currentUser;
     if (currentUser != null) {
@@ -54,4 +54,18 @@ class ListProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void updateIsDone(Todo todo, bool isDone) async {
+    Myuser? currentUser = Myuser.currentUser;
+    if (currentUser != null) {
+      CollectionReference todoCollection = FirebaseFirestore.instance
+          .collection(Myuser.collectionName)
+          .doc(currentUser.id)
+          .collection(Todo.collectionName);
+      await todoCollection.doc(todo.id).update({"isDone": isDone});
+      todo.isDone = isDone;
+    }
+    notifyListeners();
+  }
+
 }

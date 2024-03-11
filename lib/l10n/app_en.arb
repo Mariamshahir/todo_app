@@ -8,5 +8,6 @@
   "enterYourTask": "Enter your task",
   "enterYourDescription": "Enter your description",
   "add": "Add",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "done": "Done !"
 }
