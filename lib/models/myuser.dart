@@ -1,4 +1,5 @@
 class Myuser {
+  static String collectionName = "users";
   static Myuser? currentUser;
   late String id;
   late String email;

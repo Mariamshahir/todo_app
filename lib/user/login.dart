@@ -24,9 +24,10 @@ class _LoginState extends State<Login> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool obscureText = true;
   late ThemeProvider themeProvider;
+
   @override
   Widget build(BuildContext context) {
-    themeProvider=Provider.of(context);
+    themeProvider = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
@@ -34,7 +35,7 @@ class _LoginState extends State<Login> {
       body: Stack(
         children: [
           Container(
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(themeProvider.splash), fit: BoxFit.fill)),
           ),
@@ -166,13 +167,15 @@ class _LoginState extends State<Login> {
                           child: Column(
                             children: [
                               InkWell(
-                                onTap: (){
-                                  Navigator.pushNamed(context, Register.routeName);
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, Register.routeName);
                                 },
                                 child: const Text(
                                   "Don't have an account ? Sign up now",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(color: Colors.black,
+                                  style: TextStyle(
+                                      color: Colors.black,
                                       fontSize: 15,
                                       decoration: TextDecoration.underline),
                                 ),
@@ -181,7 +184,8 @@ class _LoginState extends State<Login> {
                               const Text(
                                 "Forgot Password?",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.black,
+                                style: TextStyle(
+                                    color: Colors.black,
                                     fontSize: 15,
                                     decoration: TextDecoration.underline),
                               ),
@@ -208,10 +212,10 @@ class _LoginState extends State<Login> {
       DialogUtils.showLoading(context);
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
-      Myuser.currentUser = await getUserFromUserFromFireStore(credential.user!.uid);
+      Myuser.currentUser =
+          await getUserFromUserFromFireStore(credential.user!.uid);
       DialogUtils.hideLoading(context);
-      Navigator.pushNamed(context, HomeScreen.routeName);
-
+      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
