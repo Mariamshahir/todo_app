@@ -6,6 +6,7 @@ import 'package:todo/provider/language_provider.dart';
 import 'package:todo/provider/list_provider.dart';
 import 'package:todo/provider/theme_provider.dart';
 import 'package:todo/utils/app_colors.dart';
+import 'package:todo/utils/app_language.dart';
 import 'package:todo/widget/task_widget.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 
@@ -59,7 +60,7 @@ class _ListTabState extends State<ListTab> {
                           backgroundColor: AppColors.red,
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
-                          label:"Delete",
+                          label:context.getLocalizations.delete,
                           onPressed: (BuildContext context) {
                             deleteTodo(listProvider.todos[index]);
                           },

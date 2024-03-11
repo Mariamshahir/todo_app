@@ -9,5 +9,6 @@
   "enterYourDescription": "Enter your description",
   "add": "Add",
   "welcome": "Welcome",
-  "done": "Done !"
+  "done": "Done !",
+  "delete": "Delete"
 }
