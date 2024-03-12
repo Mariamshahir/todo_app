@@ -50,7 +50,7 @@ class _RegisterState extends State<Register> {
                 child: SingleChildScrollView(
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                    height: MediaQuery.of(context).size.height * 0.49,
+                    height: MediaQuery.of(context).size.height * 0.50,
                     decoration: BoxDecoration(
                         color: Color(0x80FFFFFF),
                         borderRadius: BorderRadius.circular(25)),
@@ -129,6 +129,7 @@ class _RegisterState extends State<Register> {
                         TextFormField(
                           enabled: true,
                           controller: passwordController,
+                          obscureText: obscureText,
                           decoration: InputDecoration(
                               labelText: "Password",
                               labelStyle: const TextStyle(color: Colors.black),
@@ -171,6 +172,7 @@ class _RegisterState extends State<Register> {
                         TextFormField(
                           enabled: true,
                           controller: confirmationPasswordController,
+                          obscureText: obscureText,
                           decoration: InputDecoration(
                             labelText: "Confirmation Password",
                             labelStyle: const TextStyle(color: Colors.black),

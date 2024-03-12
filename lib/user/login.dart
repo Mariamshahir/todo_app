@@ -96,6 +96,7 @@ class _LoginState extends State<Login> {
                         TextFormField(
                           enabled: true,
                           controller: passwordController,
+                          obscureText: obscureText,
                           decoration: InputDecoration(
                               labelText: "Password",
                               labelStyle: const TextStyle(color: Colors.black),
@@ -133,35 +134,7 @@ class _LoginState extends State<Login> {
                           },
                         ),
                         const Spacer(),
-                        ElevatedButton(
-                            onPressed: () {
-                              login();
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: const Color(0xFF32A5DD),
-                              minimumSize: const Size(350, 45),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Login account",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 25,
-                                )
-                              ],
-                            )),
+                        buildElevatedButton(),
                         Spacer(),
                         Container(
                           child: Column(
@@ -205,6 +178,38 @@ class _LoginState extends State<Login> {
         ],
       ),
     );
+  }
+
+  ElevatedButton buildElevatedButton() {
+    return ElevatedButton(
+                          onPressed: () {
+                            login();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: const Color(0xFF32A5DD),
+                            minimumSize: const Size(350, 45),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Login account",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                                size: 25,
+                              )
+                            ],
+                          ));
   }
 
   void login() async {
