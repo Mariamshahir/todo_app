@@ -12,7 +12,8 @@ import 'package:todo/utils/app_language.dart';
 
 class EditTask extends StatefulWidget {
   static const String routeName = "edittask";
-   EditTask({Key? key}) : super(key: key);
+
+  EditTask({Key? key}) : super(key: key);
 
   @override
   State<EditTask> createState() => _EditTaskState();
@@ -44,16 +45,17 @@ class _EditTaskState extends State<EditTask> {
           children: [
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: AppColors.backgroundBar,width: 30)
-              ),
+                  border:
+                      Border.all(color: AppColors.backgroundBar, width: 30)),
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Center(
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.7,
-                  width: MediaQuery.of(context).size.width*0.8,
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
                   decoration: BoxDecoration(
                     color: themeProvider.addCart, // Moved color here
                     borderRadius: BorderRadius.circular(15),
@@ -66,7 +68,9 @@ class _EditTaskState extends State<EditTask> {
                         textAlign: TextAlign.center,
                         style: themeProvider.text,
                       ),
-                      SizedBox(height: 19.5,),
+                      SizedBox(
+                        height: 19.5,
+                      ),
                       TextFormField(
                         controller: taskController,
                         validator: (text) {
@@ -87,7 +91,9 @@ class _EditTaskState extends State<EditTask> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 31.5,),
+                      SizedBox(
+                        height: 31.5,
+                      ),
                       TextFormField(
                         controller: descriptionController,
                         validator: (text) {
@@ -146,7 +152,8 @@ class _EditTaskState extends State<EditTask> {
           await editTaskFireBase();
         } else {
           await saveTaskToFirestore();
-        }      },
+        }
+      },
       child: Text(
         context.getLocalizations.save,
         style: AppTheme.textTaskTitle.copyWith(color: AppColors.white),
@@ -195,8 +202,8 @@ class _EditTaskState extends State<EditTask> {
   Future<void> editTaskFireBase() async {
     if (!formKey.currentState!.validate()) return;
     Myuser? currentUser = Myuser.currentUser;
-    if(currentUser==null) return;
-        CollectionReference todoCollection = FirebaseFirestore.instance
+    if (currentUser == null) return;
+    CollectionReference todoCollection = FirebaseFirestore.instance
         .collection(Myuser.collectionName)
         .doc(Myuser.currentUser!.id)
         .collection(Todo.collectionName);
@@ -212,10 +219,10 @@ class _EditTaskState extends State<EditTask> {
     Navigator.pop(context);
   }
 
-  Future<void> saveTaskToFirestore() async{
+  Future<void> saveTaskToFirestore() async {
     if (!formKey.currentState!.validate()) return;
     Myuser? currentUser = Myuser.currentUser;
-    if(currentUser==null) return;
+    if (currentUser == null) return;
     CollectionReference todoCollection = FirebaseFirestore.instance
         .collection(Myuser.collectionName)
         .doc(Myuser.currentUser!.id)
@@ -231,5 +238,4 @@ class _EditTaskState extends State<EditTask> {
     listProvider.saveTask(todo);
     Navigator.pop(context);
   }
-
-  }
+}

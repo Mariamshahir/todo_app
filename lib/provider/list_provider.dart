@@ -76,12 +76,12 @@ class ListProvider extends ChangeNotifier {
           .collection(Myuser.collectionName)
           .doc(currentUser.id)
           .collection(Todo.collectionName);
-     await todoCollection.doc(todo.id).update({
-       'title': todo.task,
-       'description': todo.description,
-       'date': todo.dateTime,
-       'isDone': todo.isDone,
-     });
+      await todoCollection.doc(todo.id).update({
+        'title': todo.task,
+        'description': todo.description,
+        'date': todo.dateTime,
+        'isDone': todo.isDone,
+      });
       notifyListeners();
     }
   }
