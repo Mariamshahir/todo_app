@@ -99,7 +99,7 @@ class _TaskWidgetState extends State<TaskWidget> {
               },
               onDoubleTapCancel: (){
                 setState(() {
-                  isButtonPressed=true;
+                  isButtonPressed=false;
                   listProvider.updateIsDone(widget.todo, true);
                 });
               },
