@@ -15,13 +15,11 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   String selectLanguage = "en";
   String selectMode = "light";
-  late LanguageProvider provider;
-  late ThemeProvider themeProvider;
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of(context);
-    themeProvider = Provider.of(context);
+    final provider = Provider.of<LanguageProvider>(context);
+    final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Column(
       children: [
@@ -52,7 +50,7 @@ class _SettingsState extends State<Settings> {
               SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.only(left: 56,right: 37),
-                child: buildLanguageDropDownButton(),
+                child: buildLanguageDropDownButton(provider),
               ),
               SizedBox(height: 20,),
               Padding(
@@ -62,7 +60,7 @@ class _SettingsState extends State<Settings> {
               SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.only(left: 56,right: 37),
-                child: buildThemeDropDownButton(),
+                child: buildThemeDropDownButton(themeProvider),
               ),
             ],
           ),
@@ -71,7 +69,7 @@ class _SettingsState extends State<Settings> {
     );
   }
 
-  Widget buildLanguageDropDownButton() {
+  Widget buildLanguageDropDownButton(LanguageProvider provider) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(color:AppColors.white,border: Border.all(color: AppColors.backgroundBar)),
@@ -96,7 +94,7 @@ class _SettingsState extends State<Settings> {
     );
   }
 
-  Widget buildThemeDropDownButton() {
+  Widget buildThemeDropDownButton(ThemeProvider themeProvider) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(color:AppColors.white,border: Border.all(color: AppColors.backgroundBar)),
@@ -113,12 +111,10 @@ class _SettingsState extends State<Settings> {
         isExpanded: true,
         onChanged: (newValue) {
           selectMode = newValue!;
-          themeProvider.currentTheme =selectMode  == "dark" ? ThemeMode.dark : ThemeMode.light;
-         themeProvider.notifyListeners();
+          themeProvider.changeTheme(selectMode == "dark" ? ThemeMode.dark : ThemeMode.light);
           setState(() {});
         },
       ),
     );
   }
-
 }
