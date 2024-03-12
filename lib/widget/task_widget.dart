@@ -35,8 +35,7 @@ class _TaskWidgetState extends State<TaskWidget> {
       child: Container(
         decoration: BoxDecoration(
             color: themeProvider.cart, borderRadius: BorderRadius.circular(15)),
-
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 18),
+                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 18),
         child: Row(
           children: [
             Container(
