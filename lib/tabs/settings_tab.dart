@@ -112,12 +112,12 @@ class _SettingsState extends State<Settings> {
         value: selectMode,
         isExpanded: true,
         onChanged: (newValue) {
-          selectMode = newValue!;
-          themeProvider.changeTheme(selectMode == "dark"?ThemeMode.dark:ThemeMode.light);
-          setState(() {});
+          setState(() {
+            selectMode = newValue!;
+          });
+          bool isDarkMode = newValue == "dark";
+          themeProvider.changeTheme(isDarkMode);
         },
       ),
     );
-  }
-
-}
+  }}

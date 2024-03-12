@@ -17,8 +17,8 @@ class ThemeProvider extends ChangeNotifier{
       currentTheme = getTheme()! ? ThemeMode.dark : ThemeMode.light;
     }
   }
-  void changeTheme(ThemeMode selectMode){
-    currentTheme = selectMode;
+  void changeTheme(bool selectMode){
+    currentTheme = selectMode ? ThemeMode.dark : ThemeMode.light;
     saveTheme(selectMode == ThemeMode.dark);
     notifyListeners();
   }
