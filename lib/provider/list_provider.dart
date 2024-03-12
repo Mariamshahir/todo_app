@@ -9,7 +9,8 @@ class ListProvider extends ChangeNotifier {
 
   onDateSelected(DateTime newDateTime) async {
     selectedDate = newDateTime;
-    refreshTodo();
+    await refreshTodo();
+    notifyListeners();
   }
 
   Future<void> refreshTodo() async {
