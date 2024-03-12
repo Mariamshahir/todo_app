@@ -80,25 +80,6 @@ class ListProvider extends ChangeNotifier {
         'title': todo.task,
         'description': todo.description,
         'date': todo.dateTime,
-        'isDone': todo.isDone,
-      });
-      notifyListeners();
-    }
-  }
-
-  Future<void> saveTask(Todo todo) async {
-    Myuser? currentUser = Myuser.currentUser;
-    if (currentUser != null) {
-      CollectionReference todoCollection = FirebaseFirestore.instance
-          .collection(Myuser.collectionName)
-          .doc(currentUser.id)
-          .collection(Todo.collectionName);
-
-      await todoCollection.add({
-        "title": todo.task,
-        "description": todo.description,
-        "date": todo.dateTime,
-        "isDone": todo.isDone,
       });
       notifyListeners();
     }

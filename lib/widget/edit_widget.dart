@@ -52,8 +52,8 @@ class _EditTaskState extends State<EditTask> {
               padding: const EdgeInsets.all(20),
               child: Center(
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.7,
-                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  width: MediaQuery.of(context).size.width * 0.9,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
                   decoration: BoxDecoration(
@@ -68,7 +68,7 @@ class _EditTaskState extends State<EditTask> {
                         textAlign: TextAlign.center,
                         style: themeProvider.text,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 19.5,
                       ),
                       TextFormField(
@@ -91,7 +91,7 @@ class _EditTaskState extends State<EditTask> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 31.5,
                       ),
                       TextFormField(
@@ -148,11 +148,8 @@ class _EditTaskState extends State<EditTask> {
   ElevatedButton buildElevatedButton() {
     return ElevatedButton(
       onPressed: () async {
-        if (todo != null) {
           await editTaskFireBase();
-        } else {
-          await saveTaskToFirestore();
-        }
+
       },
       child: Text(
         context.getLocalizations.save,
@@ -209,33 +206,12 @@ class _EditTaskState extends State<EditTask> {
         .collection(Todo.collectionName);
     DocumentReference doc = todoCollection.doc();
     await doc.update({
-      "id": doc.id,
       "title": taskController.text,
       "description": descriptionController.text,
       "date": Timestamp.fromDate(selectDate),
-      "isDone": false,
     });
     listProvider.editTodo(todo);
     Navigator.pop(context);
   }
 
-  Future<void> saveTaskToFirestore() async {
-    if (!formKey.currentState!.validate()) return;
-    Myuser? currentUser = Myuser.currentUser;
-    if (currentUser == null) return;
-    CollectionReference todoCollection = FirebaseFirestore.instance
-        .collection(Myuser.collectionName)
-        .doc(Myuser.currentUser!.id)
-        .collection(Todo.collectionName);
-    DocumentReference doc = todoCollection.doc();
-    await doc.set({
-      "id": doc.id,
-      "title": taskController.text,
-      "description": descriptionController.text,
-      "date": Timestamp.fromDate(selectDate),
-      "isDone": false,
-    });
-    listProvider.saveTask(todo);
-    Navigator.pop(context);
-  }
 }
