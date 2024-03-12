@@ -63,7 +63,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                   ),
                   Row(
                     children: [
-                      const Icon(Icons.timelapse),
+                       Icon(Icons.timelapse,color: themeProvider.icon,),
                       const SizedBox(
                         width: 5,
                       ),
