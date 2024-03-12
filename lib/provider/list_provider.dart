@@ -68,7 +68,7 @@ class ListProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> editTodo() async{
+  Future<void> editTodo(Todo todo) async {
     todos.clear();
     Myuser? currentUser = Myuser.currentUser;
     if (currentUser != null) {
@@ -76,18 +76,12 @@ class ListProvider extends ChangeNotifier {
           .collection(Myuser.collectionName)
           .doc(currentUser.id)
           .collection(Todo.collectionName);
-      QuerySnapshot querySnapshot = await todoCollection.orderBy("date").get();
-      todos = querySnapshot.docs.map((doc) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        Timestamp dateAsTime = data["date"];
-        return Todo(
-          id: data["id"],
-          task: data["title"],
-          description: data["description"],
-          dateTime: dateAsTime.toDate(),
-          isDone: data["isDone"],
-        );
-      }).toList();
+     await todoCollection.doc(todo.id).update({
+       'title': todo.task,
+       'description': todo.description,
+       'date': todo.dateTime,
+       'isDone': todo.isDone,
+     });
     }
     notifyListeners();
   }
