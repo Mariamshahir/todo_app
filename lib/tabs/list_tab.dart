@@ -45,14 +45,14 @@ class _ListTabState extends State<ListTab> {
             itemCount: listProvider.todos.length,
             itemBuilder: (context, index) {
               return Container(
-                margin: EdgeInsets.symmetric(horizontal: 30),
+                margin: const EdgeInsets.symmetric(horizontal: 30,vertical: 22),
                 child: Slidable(
                   direction: Axis.horizontal,
                   startActionPane: ActionPane(
                     openThreshold: 0.5,
                       closeThreshold: 0.8,
                       dragDismissible:false,
-                      motion: StretchMotion(),
+                      motion: const StretchMotion(),
                       children: [
                         SlidableAction(
                           spacing: 9,
