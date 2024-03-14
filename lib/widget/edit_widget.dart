@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/models/myuser.dart';
 import 'package:todo/models/todo_model.dart';
 import 'package:todo/provider/language_provider.dart';
 import 'package:todo/provider/list_provider.dart';
@@ -27,13 +25,20 @@ class _EditTaskState extends State<EditTask> {
   late LanguageProvider languageProvider;
   late ThemeProvider themeProvider;
   final GlobalKey<FormState> formKey = GlobalKey();
-  late Todo todo;
+   Todo? todo;
 
   @override
   Widget build(BuildContext context) {
-    listProvider = Provider.of(context);
-    languageProvider = Provider.of(context);
-    themeProvider = Provider.of(context);
+    listProvider = Provider.of<ListProvider>(context);
+    languageProvider = Provider.of<LanguageProvider>(context);
+    themeProvider = Provider.of<ThemeProvider>(context);
+
+    if(todo==null){
+      todo = ModalRoute.of(context)?.settings.arguments as Todo;
+      taskController.text=todo!.task!;
+      descriptionController.text=todo!.description!;
+      selectDate=todo!.dateTime!;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -60,81 +65,84 @@ class _EditTaskState extends State<EditTask> {
                     color: themeProvider.addCart, // Moved color here
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        context.getLocalizations.editTask,
-                        textAlign: TextAlign.center,
-                        style: themeProvider.text,
-                      ),
-                      const SizedBox(
-                        height: 19.5,
-                      ),
-                      TextFormField(
-                        controller: taskController,
-                        validator: (text) {
-                          if (text?.isEmpty == true) {
-                            return "Please enter a valid task";
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          labelText: context.getLocalizations.thisIsTitle,
-                          labelStyle: AppTheme.task,
-                          enabledBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColors.gray,
-                              width: 1.5,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 31.5,
-                      ),
-                      TextFormField(
-                        controller: descriptionController,
-                        validator: (text) {
-                          if (text?.isEmpty == true) {
-                            return "Please enter a valid description";
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          labelText: context.getLocalizations.editTask,
-                          labelStyle: AppTheme.task,
-                          enabledBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColors.gray,
-                              width: 1.5,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 33,
-                      ),
-                      Text(
-                        context.getLocalizations.selectTime,
-                        textAlign: TextAlign.start,
-                        style: themeProvider.selectTime,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          showMyDate(context);
-                        },
-                        child: Text(
-                          "${selectDate.day}/${selectDate.month}/${selectDate.year}",
-                          style: AppTheme.time,
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          context.getLocalizations.editTask,
                           textAlign: TextAlign.center,
+                          style: themeProvider.text,
                         ),
-                      ),
-                      const SizedBox(height: 90),
-                      buildElevatedButton(),
-                    ],
+                        const SizedBox(
+                          height: 19.5,
+                        ),
+                        TextFormField(
+                          controller: taskController,
+                          validator: (text) {
+                            if (text?.isEmpty == true) {
+                              return "Please enter a valid task";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            labelText: context.getLocalizations.thisIsTitle,
+                            labelStyle: AppTheme.task,
+                            enabledBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: AppColors.gray,
+                                width: 1.5,
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 31.5,
+                        ),
+                        TextFormField(
+                          controller: descriptionController,
+                          validator: (text) {
+                            if (text?.isEmpty == true) {
+                              return "Please enter a valid description";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            labelText: context.getLocalizations.editTask,
+                            labelStyle: AppTheme.task,
+                            enabledBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: AppColors.gray,
+                                width: 1.5,
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 33,
+                        ),
+                        Text(
+                          context.getLocalizations.selectTime,
+                          textAlign: TextAlign.start,
+                          style: themeProvider.selectTime,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            showMyDate(context);
+                          },
+                          child: Text(
+                            "${selectDate.day}/${selectDate.month}/${selectDate.year}",
+                            style: AppTheme.time,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        const SizedBox(height: 90),
+                        buildElevatedButton(),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -149,7 +157,6 @@ class _EditTaskState extends State<EditTask> {
     return ElevatedButton(
       onPressed: () async {
           await editTaskFireBase();
-
       },
       child: Text(
         context.getLocalizations.save,
@@ -198,19 +205,10 @@ class _EditTaskState extends State<EditTask> {
 
   Future<void> editTaskFireBase() async {
     if (!formKey.currentState!.validate()) return;
-    Myuser? currentUser = Myuser.currentUser;
-    if (currentUser == null) return;
-    CollectionReference todoCollection = FirebaseFirestore.instance
-        .collection(Myuser.collectionName)
-        .doc(Myuser.currentUser!.id)
-        .collection(Todo.collectionName);
-    DocumentReference doc = todoCollection.doc();
-    await doc.update({
-      "title": taskController.text,
-      "description": descriptionController.text,
-      "date": Timestamp.fromDate(selectDate),
-    });
-    listProvider.editTodo(todo);
+    todo!.task=taskController.text;
+    todo!.description=descriptionController.text;
+    todo!.dateTime!=selectDate;
+    await listProvider.editTodo(todo!);
     Navigator.pop(context);
   }
 
