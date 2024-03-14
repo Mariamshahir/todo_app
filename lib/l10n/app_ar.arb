@@ -14,5 +14,13 @@
   "editTask": "تعديل مهمه",
   "save": "حذف",
   "thisIsTitle": "هذه هذا العنوان",
-  "taskDetails":"تفاصيل المهمة"
+  "taskDetails":"تفاصيل المهمة",
+  "register": "يسجيل دخول",
+  "login": "تسجيل دخول",
+  "userName": "اسم المستخدم",
+  "email": "بريد الالكتروني",
+  "password": "كلمه المرور",
+  "confirmationPassword": "تاكيد كلمه المرور",
+  "createAccount": "انشاء حساب",
+  "loginAccount": "دخول حساب",
 }

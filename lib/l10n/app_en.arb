@@ -14,5 +14,14 @@
   "editTask": "Edit Task",
   "save": "Save Changes",
   "thisIsTitle": "This is title",
-  "taskDetails":"Task details"
+  "taskDetails":"Task details",
+  "register": "Register",
+  "login": "Login",
+  "userName": "UserName",
+  "email": "Email",
+  "password": "Password",
+  "confirmationPassword": "Confirmation Password",
+  "createAccount": "Create Account",
+  "loginAccount": "Login Account"
+
 }
