@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/homescreen.dart';
 import 'package:todo/models/myuser.dart';
+import 'package:todo/provider/language_provider.dart';
 import 'package:todo/provider/theme_provider.dart';
+import 'package:todo/user/login.dart';
 import 'package:todo/utils/app_colors.dart';
+import 'package:todo/utils/app_language.dart';
 import 'package:todo/utils/dialog_utils.dart';
 
 class Register extends StatefulWidget {
@@ -26,13 +28,15 @@ class _RegisterState extends State<Register> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool obscureText = true;
   late ThemeProvider themeProvider;
+  late LanguageProvider languageProvider;
 
   @override
   Widget build(BuildContext context) {
-    themeProvider=Provider.of(context);
+    themeProvider=Provider.of<ThemeProvider>(context);
+    languageProvider=Provider.of<LanguageProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Register"),
+        title: Text(context.getLocalizations.register),
       ),
       body: Stack(
         children: [
@@ -62,7 +66,7 @@ class _RegisterState extends State<Register> {
                           enabled: true,
                           controller: userNameController,
                           decoration: InputDecoration(
-                            labelText: "User Name",
+                            labelText: context.getLocalizations.userName,
                             labelStyle: const TextStyle(color: Colors.black),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -93,7 +97,7 @@ class _RegisterState extends State<Register> {
                           enabled: true,
                           controller: emailController,
                           decoration: InputDecoration(
-                            labelText: "Email",
+                            labelText: context.getLocalizations.email,
                             labelStyle: const TextStyle(color: Colors.black),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -131,7 +135,7 @@ class _RegisterState extends State<Register> {
                           controller: passwordController,
                           obscureText: obscureText,
                           decoration: InputDecoration(
-                              labelText: "Password",
+                              labelText: context.getLocalizations.password,
                               labelStyle: const TextStyle(color: Colors.black),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -174,7 +178,7 @@ class _RegisterState extends State<Register> {
                           controller: confirmationPasswordController,
                           obscureText: obscureText,
                           decoration: InputDecoration(
-                            labelText: "Confirmation Password",
+                            labelText: context.getLocalizations.confirmationPassword,
                             labelStyle: const TextStyle(color: Colors.black),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -214,35 +218,7 @@ class _RegisterState extends State<Register> {
                           },
                         ),
                         const Spacer(),
-                        ElevatedButton(
-                            onPressed: () {
-                              registerAccount();
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: const Color(0xFF32A5DD),
-                              minimumSize: const Size(350, 45),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Create account",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 25,
-                                )
-                              ],
-                            )),
+                        buildElevatedButton(),
                         const Spacer(
                           flex: 2,
                         ),
@@ -256,6 +232,38 @@ class _RegisterState extends State<Register> {
         ],
       ),
     );
+  }
+
+  ElevatedButton buildElevatedButton() {
+    return ElevatedButton(
+                          onPressed: () {
+                            registerAccount();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: const Color(0xFF32A5DD),
+                            minimumSize: const Size(350, 45),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                context.getLocalizations.createAccount,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                                size: 25,
+                              )
+                            ],
+                          ));
   }
 
   void registerAccount() async {
@@ -272,7 +280,7 @@ class _RegisterState extends State<Register> {
           userName: userNameController.text);
       await registerUserToFireStore(Myuser.currentUser!);
       DialogUtils.hideLoading(context);
-      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+      Navigator.pushReplacementNamed(context, Login.routeName);
     } on FirebaseAuthException catch (e) {
       DialogUtils.hideLoading(context);
       if (e.code == 'weak-password') {

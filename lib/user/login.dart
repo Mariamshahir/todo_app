@@ -7,6 +7,7 @@ import 'package:todo/models/myuser.dart';
 import 'package:todo/provider/theme_provider.dart';
 import 'package:todo/user/register.dart';
 import 'package:todo/utils/app_colors.dart';
+import 'package:todo/utils/app_language.dart';
 import 'package:todo/utils/dialog_utils.dart';
 
 class Login extends StatefulWidget {
@@ -30,7 +31,7 @@ class _LoginState extends State<Login> {
     themeProvider = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: Text(context.getLocalizations.login),
       ),
       body: Stack(
         children: [
@@ -60,7 +61,7 @@ class _LoginState extends State<Login> {
                           enabled: true,
                           controller: emailController,
                           decoration: InputDecoration(
-                            labelText: "Email",
+                            labelText: context.getLocalizations.email,
                             labelStyle: const TextStyle(color: Colors.black),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -98,7 +99,7 @@ class _LoginState extends State<Login> {
                           controller: passwordController,
                           obscureText: obscureText,
                           decoration: InputDecoration(
-                              labelText: "Password",
+                              labelText: context.getLocalizations.password,
                               labelStyle: const TextStyle(color: Colors.black),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -182,34 +183,33 @@ class _LoginState extends State<Login> {
 
   ElevatedButton buildElevatedButton() {
     return ElevatedButton(
-                          onPressed: () {
-                            login();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFF32A5DD),
-                            minimumSize: const Size(350, 45),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Login account",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                                size: 25,
-                              )
-                            ],
-                          ));
+        onPressed: () {
+          login();
+        },
+        style: ElevatedButton.styleFrom(
+          primary: const Color(0xFF32A5DD),
+          minimumSize: const Size(350, 45),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              context.getLocalizations.loginAccount,
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
+              size: 25,
+            )
+          ],
+        ));
   }
 
   void login() async {
