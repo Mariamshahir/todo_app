@@ -30,7 +30,7 @@ class _TaskWidgetState extends State<TaskWidget> {
     listProvider = Provider.of(context);
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, EditTask.routeName);
+        Navigator.pushNamed(context, EditTask.routeName,arguments: widget.todo);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -74,9 +74,12 @@ class _TaskWidgetState extends State<TaskWidget> {
                       const SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        widget.todo.description ?? "",
-                        style: themeProvider.numbertext,
+                      Expanded(
+                        child: Text(
+                          widget.todo.description ?? "",
+                          style: themeProvider.numbertext,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       )
                     ],
                   )
