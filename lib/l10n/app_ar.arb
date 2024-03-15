@@ -22,5 +22,5 @@
   "password": "كلمه المرور",
   "confirmationPassword": "تاكيد كلمه المرور",
   "createAccount": "انشاء حساب",
-  "loginAccount": "دخول حساب",
+  "loginAccount": "دخول حساب"
 }
