@@ -18,7 +18,7 @@ class ThemeProvider extends ChangeNotifier {
 
   void changeTheme(bool selectMode) async {
     currentTheme = selectMode ? ThemeMode.dark : ThemeMode.light;
-    await saveTheme(selectMode); // Change: Removed unnecessary condition
+    await saveTheme(selectMode);
     notifyListeners();
   }
 
