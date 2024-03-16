@@ -25,6 +25,7 @@ void main() async{
   await languageProvider.setItems();
 
   ThemeProvider themeProvider =ThemeProvider();
+  await themeProvider.setItems();
 
 
   ListProvider listProvider =ListProvider();
@@ -71,6 +72,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
