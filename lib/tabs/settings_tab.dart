@@ -34,34 +34,50 @@ class _SettingsState extends State<Settings> {
                   Positioned.fill(
                     child: Column(
                       children: [
-                        Expanded(child: Container(color: AppColors.backgroundBar,)),
+                        Expanded(
+                            child: Container(
+                          color: AppColors.backgroundBar,
+                        )),
                       ],
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
-                    child: Center(child: Text(context.getLocalizations.settings, style: themeProvider.title)),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 25, horizontal: 16),
+                    child: Center(
+                        child: Text(context.getLocalizations.settings,
+                            style: themeProvider.title)),
                   ),
                 ],
               ),
-              SizedBox(height: 12,),
-              Padding(
-                padding: const EdgeInsets.only(top: 25,left: 38),
-                child: Text(context.getLocalizations.language, style: themeProvider.text),
+              const SizedBox(
+                height: 12,
               ),
-              SizedBox(height: 20,),
               Padding(
-                padding: const EdgeInsets.only(left: 56,right: 37),
+                padding: const EdgeInsets.only(top: 25, left: 38),
+                child: Text(context.getLocalizations.language,
+                    style: themeProvider.text),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 56, right: 37),
                 child: buildLanguageDropDownButton(),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 38),
-                child: Text(context.getLocalizations.mode, style: themeProvider.text),
+                child: Text(context.getLocalizations.mode,
+                    style: themeProvider.text),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Padding(
-                padding: const EdgeInsets.only(left: 56,right: 37),
+                padding: const EdgeInsets.only(left: 56, right: 37),
                 child: buildThemeDropDownButton(),
               ),
             ],
@@ -73,18 +89,23 @@ class _SettingsState extends State<Settings> {
 
   Widget buildLanguageDropDownButton() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(color:AppColors.white,border: Border.all(color: AppColors.backgroundBar)),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+          color: AppColors.white,
+          border: Border.all(color: AppColors.backgroundBar)),
       child: DropdownButton<String>(
-        items: const[
+        items: const [
           DropdownMenuItem(
               value: "en",
-              child: Text("English", style: TextStyle(fontSize: 14,color: AppColors.backgroundBar))),
+              child: Text("English",
+                  style:
+                      TextStyle(fontSize: 14, color: AppColors.backgroundBar))),
           DropdownMenuItem(
               value: "ar",
-              child: Text("العربيه", style: TextStyle(fontSize: 14,color: AppColors.backgroundBar))),
+              child: Text("العربيه",
+                  style:
+                      TextStyle(fontSize: 14, color: AppColors.backgroundBar))),
         ],
-
         value: selectLanguage,
         isExpanded: true,
         onChanged: (newValue) {
@@ -98,16 +119,22 @@ class _SettingsState extends State<Settings> {
 
   Widget buildThemeDropDownButton() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(color:AppColors.white,border: Border.all(color: AppColors.backgroundBar)),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+          color: AppColors.white,
+          border: Border.all(color: AppColors.backgroundBar)),
       child: DropdownButton<String>(
-        items: const[
+        items: const [
           DropdownMenuItem(
               value: "light",
-              child: Text("Light Mode", style: TextStyle(fontSize: 14,color: AppColors.backgroundBar))),
+              child: Text("Light Mode",
+                  style:
+                      TextStyle(fontSize: 14, color: AppColors.backgroundBar))),
           DropdownMenuItem(
               value: "dark",
-              child: Text("Dark Mode", style: TextStyle(fontSize: 14,color: AppColors.backgroundBar))),
+              child: Text("Dark Mode",
+                  style:
+                      TextStyle(fontSize: 14, color: AppColors.backgroundBar))),
         ],
         value: selectMode,
         isExpanded: true,
@@ -120,4 +147,5 @@ class _SettingsState extends State<Settings> {
         },
       ),
     );
-  }}
+  }
+}
