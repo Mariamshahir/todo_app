@@ -11,7 +11,7 @@ abstract class DialogUtils {
               children: [
                 Text(
                   "Loading...",
-                  style: TextStyle(fontSize: 20,color: Colors.black),
+                  style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
                 Spacer(),
                 CircularProgressIndicator(
@@ -33,7 +33,7 @@ abstract class DialogUtils {
         context: context,
         builder: (_) => AlertDialog(
               title: const Text("Error"),
-              content: Text(message??Messages.defaultErrorMessage),
+              content: Text(message ?? Messages.defaultErrorMessage),
               actions: [
                 TextButton(
                     onPressed: () {
