@@ -29,18 +29,21 @@ class _TaskWidgetState extends State<TaskWidget> {
     themeProvider = Provider.of<ThemeProvider>(context);
     listProvider = Provider.of(context);
     return InkWell(
-      onTap: (){
-        Navigator.pushNamed(context, EditTask.routeName,arguments: widget.todo);
+      onTap: () {
+        Navigator.pushNamed(context, EditTask.routeName,
+            arguments: widget.todo);
       },
       child: Container(
         decoration: BoxDecoration(
             color: themeProvider.cart, borderRadius: BorderRadius.circular(15)),
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 18),
+        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 18),
         child: Row(
           children: [
             Container(
               decoration: BoxDecoration(
-                  color:isButtonPressed ? AppColors.green:AppColors.backgroundBar,
+                  color: isButtonPressed
+                      ? AppColors.green
+                      : AppColors.backgroundBar,
                   borderRadius: BorderRadius.circular(10)),
               height: 62,
               width: 4,
@@ -54,7 +57,10 @@ class _TaskWidgetState extends State<TaskWidget> {
                 children: [
                   Text(
                     widget.todo.task ?? "",
-                    style: isButtonPressed?AppTheme.textTaskTitle.copyWith(color: AppColors.green):AppTheme.textTaskTitle,
+                    style: isButtonPressed
+                        ? AppTheme.textTaskTitle
+                            .copyWith(color: AppColors.green)
+                        : AppTheme.textTaskTitle,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -63,7 +69,10 @@ class _TaskWidgetState extends State<TaskWidget> {
                   ),
                   Row(
                     children: [
-                       Icon(Icons.timelapse,color: themeProvider.icon,),
+                      Icon(
+                        Icons.timelapse,
+                        color: themeProvider.icon,
+                      ),
                       const SizedBox(
                         width: 5,
                       ),
@@ -87,7 +96,7 @@ class _TaskWidgetState extends State<TaskWidget> {
               ),
             ),
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 toggleDone();
               },
               onTapDown: (_) {
@@ -100,9 +109,9 @@ class _TaskWidgetState extends State<TaskWidget> {
                   isButtonPressed = true;
                 });
               },
-              onDoubleTapCancel: (){
+              onDoubleTapCancel: () {
                 setState(() {
-                  isButtonPressed=false;
+                  isButtonPressed = false;
                   listProvider.updateIsDone(widget.todo, true);
                 });
               },
@@ -121,29 +130,26 @@ class _TaskWidgetState extends State<TaskWidget> {
 
   Container buildisDoneBotton(BuildContext context) {
     return Container(
-              padding: const EdgeInsets.symmetric(
-                  vertical: 7.38, horizontal: 21.6),
-              decoration: BoxDecoration(
-                color: isButtonPressed
-                    ? AppColors.green
-                    : AppColors.backgroundBar,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: isButtonPressed
-                  ? Text(
-                context.getLocalizations.done,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              )
-                  : const Icon(
-                Icons.done_sharp,
-                size: 30,
+      padding: const EdgeInsets.symmetric(vertical: 7.38, horizontal: 21.6),
+      decoration: BoxDecoration(
+        color: isButtonPressed ? AppColors.green : AppColors.backgroundBar,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: isButtonPressed
+          ? Text(
+              context.getLocalizations.done,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
-            );
+            )
+          : const Icon(
+              Icons.done_sharp,
+              size: 30,
+              color: Colors.white,
+            ),
+    );
   }
 
   void toggleDone() {

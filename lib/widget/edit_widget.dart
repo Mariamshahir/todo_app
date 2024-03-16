@@ -25,7 +25,7 @@ class _EditTaskState extends State<EditTask> {
   late LanguageProvider languageProvider;
   late ThemeProvider themeProvider;
   final GlobalKey<FormState> formKey = GlobalKey();
-   Todo? todo;
+  Todo? todo;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +33,11 @@ class _EditTaskState extends State<EditTask> {
     languageProvider = Provider.of<LanguageProvider>(context);
     themeProvider = Provider.of<ThemeProvider>(context);
 
-    if(todo==null){
+    if (todo == null) {
       todo = ModalRoute.of(context)?.settings.arguments as Todo;
-      taskController.text=todo!.task!;
-      descriptionController.text=todo!.description!;
-      selectDate=todo!.dateTime!;
+      taskController.text = todo!.task!;
+      descriptionController.text = todo!.description!;
+      selectDate = todo!.dateTime!;
     }
 
     return Scaffold(
@@ -156,7 +156,7 @@ class _EditTaskState extends State<EditTask> {
   ElevatedButton buildElevatedButton() {
     return ElevatedButton(
       onPressed: () async {
-          await editTaskFireBase();
+        await editTaskFireBase();
       },
       child: Text(
         context.getLocalizations.save,
@@ -205,11 +205,10 @@ class _EditTaskState extends State<EditTask> {
 
   Future<void> editTaskFireBase() async {
     if (!formKey.currentState!.validate()) return;
-    todo!.task=taskController.text;
-    todo!.description=descriptionController.text;
-    todo!.dateTime!=selectDate;
+    todo!.task = taskController.text;
+    todo!.description = descriptionController.text;
+    todo!.dateTime != selectDate;
     await listProvider.editTodo(todo!);
     Navigator.pop(context);
   }
-
 }
