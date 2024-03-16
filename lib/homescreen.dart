@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           InkWell(
-              onTap: () async{
+              onTap: () async {
                 listProvider.clearData();
                 await FirebaseAuth.instance.signOut();
                 Navigator.pushReplacementNamed(context, Login.routeName);
