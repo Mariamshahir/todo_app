@@ -32,8 +32,8 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    themeProvider=Provider.of<ThemeProvider>(context);
-    languageProvider=Provider.of<LanguageProvider>(context);
+    themeProvider = Provider.of<ThemeProvider>(context);
+    languageProvider = Provider.of<LanguageProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(context.getLocalizations.register),
@@ -178,7 +178,8 @@ class _RegisterState extends State<Register> {
                           controller: confirmationPasswordController,
                           obscureText: obscureText,
                           decoration: InputDecoration(
-                            labelText: context.getLocalizations.confirmationPassword,
+                            labelText:
+                                context.getLocalizations.confirmationPassword,
                             labelStyle: const TextStyle(color: Colors.black),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -236,34 +237,33 @@ class _RegisterState extends State<Register> {
 
   ElevatedButton buildElevatedButton() {
     return ElevatedButton(
-                          onPressed: () {
-                            registerAccount();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFF32A5DD),
-                            minimumSize: const Size(350, 45),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                context.getLocalizations.createAccount,
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                                size: 25,
-                              )
-                            ],
-                          ));
+        onPressed: () {
+          registerAccount();
+        },
+        style: ElevatedButton.styleFrom(
+          primary: const Color(0xFF32A5DD),
+          minimumSize: const Size(350, 45),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              context.getLocalizations.createAccount,
+              style: const TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            const Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
+              size: 25,
+            )
+          ],
+        ));
   }
 
   void registerAccount() async {

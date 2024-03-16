@@ -136,7 +136,7 @@ class _LoginState extends State<Login> {
                         ),
                         const Spacer(),
                         buildElevatedButton(),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           child: Column(
                             children: [
@@ -198,12 +198,12 @@ class _LoginState extends State<Login> {
           children: [
             Text(
               context.getLocalizations.loginAccount,
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: const TextStyle(color: Colors.white, fontSize: 20),
             ),
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward,
               color: Colors.white,
               size: 25,
