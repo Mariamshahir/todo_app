@@ -13,60 +13,61 @@ import 'package:todo/user/register.dart';
 import 'package:todo/utils/aap_theme.dart';
 import 'package:todo/widget/edit_widget.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(options: const FirebaseOptions(apiKey: "AIzaSyAsZzYRoZ230qYBQITuoY9KM0_Vf6lvWDY",
-      appId: "todo-app-10247", projectId: "todo-app-10247", messagingSenderId: "todo-app-10247"));
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyAsZzYRoZ230qYBQITuoY9KM0_Vf6lvWDY",
+          appId: "todo-app-10247",
+          projectId: "todo-app-10247",
+          messagingSenderId: "todo-app-10247"));
 
   //await FirebaseFirestore.instance.disableNetwork();
 
-  LanguageProvider languageProvider =LanguageProvider();
+  LanguageProvider languageProvider = LanguageProvider();
   await languageProvider.setItems();
 
-  ThemeProvider themeProvider =ThemeProvider();
+  ThemeProvider themeProvider = ThemeProvider();
   await themeProvider.setItems();
 
-
-  ListProvider listProvider =ListProvider();
+  ListProvider listProvider = ListProvider();
   await listProvider.refreshTodo();
-  runApp(MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => listProvider),
-        ChangeNotifierProvider(create: (_) => languageProvider),
-        ChangeNotifierProvider(create: (_) => themeProvider),
-      ],
-      child: const MyApp()),
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => listProvider),
+      ChangeNotifierProvider(create: (_) => languageProvider),
+      ChangeNotifierProvider(create: (_) => themeProvider),
+    ], child: const MyApp()),
   );
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    LanguageProvider provider=Provider.of(context);
-    ThemeProvider themeProvider=Provider.of(context);
+    LanguageProvider provider = Provider.of(context);
+    ThemeProvider themeProvider = Provider.of(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const[
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const[
-        Locale("en"),
-        Locale("ar")
-      ],
+      supportedLocales: const [Locale("en"), Locale("ar")],
       locale: Locale(provider.currentLocale),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeProvider.currentTheme,
       routes: {
-        Splash.routeName:(_) => Splash(),
-        HomeScreen.routeName:(_) => HomeScreen(),
-        Login.routeName:(_) => Login(),
-        Register.routeName:(_) => Register(),
-        EditTask.routeName:(_) => EditTask()
+        Splash.routeName: (_) => Splash(),
+        HomeScreen.routeName: (_) => HomeScreen(),
+        Login.routeName: (_) => Login(),
+        Register.routeName: (_) => Register(),
+        EditTask.routeName: (_) => EditTask()
       },
       initialRoute: Splash.routeName,
     );
