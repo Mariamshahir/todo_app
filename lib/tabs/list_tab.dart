@@ -45,29 +45,31 @@ class _ListTabState extends State<ListTab> {
             itemCount: listProvider.todos.length,
             itemBuilder: (context, index) {
               return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 30,vertical: 22),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 22),
                 child: Slidable(
                   direction: Axis.horizontal,
                   startActionPane: ActionPane(
-                    openThreshold: 0.5,
+                      openThreshold: 0.5,
                       closeThreshold: 0.8,
-                      dragDismissible:false,
+                      dragDismissible: false,
                       motion: const StretchMotion(),
                       children: [
                         SlidableAction(
                           spacing: 9,
-                          borderRadius:BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(20),
                           backgroundColor: AppColors.red,
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
-                          label:context.getLocalizations.delete,
+                          label: context.getLocalizations.delete,
                           onPressed: (BuildContext context) {
                             deleteTodo(listProvider.todos[index]);
                           },
                         ),
                       ]),
                   child: Container(
-                    child: TaskWidget(todo: listProvider.todos[index],
+                    child: TaskWidget(
+                      todo: listProvider.todos[index],
                     ),
                   ),
                 ),
@@ -78,7 +80,6 @@ class _ListTabState extends State<ListTab> {
       ],
     );
   }
-
 
   Widget buildEasyInfiniteDateTimeLine() {
     return Consumer<LanguageProvider>(
@@ -93,7 +94,7 @@ class _ListTabState extends State<ListTab> {
                       child: Container(
                     color: AppColors.backgroundBar,
                   )),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ),
@@ -105,7 +106,7 @@ class _ListTabState extends State<ListTab> {
               onDateChange: (selectedDate) {
                 listProvider.onDateSelected(selectedDate);
               },
-              dayProps: EasyDayProps(height: 90, width: 60),
+              dayProps: const EasyDayProps(height: 90, width: 60),
               itemBuilder: (context, dayNumber, dayName, monthName, fullDate,
                   isSelected) {
                 return Card(
@@ -116,7 +117,7 @@ class _ListTabState extends State<ListTab> {
                         color: themeProvider.cart),
                     child: Column(
                       children: [
-                        Spacer(),
+                        const Spacer(),
                         Text(monthName,
                             style: TextStyle(
                                 color: isSelected
@@ -124,7 +125,7 @@ class _ListTabState extends State<ListTab> {
                                     : themeProvider.calender,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15)),
-                        Spacer(),
+                        const Spacer(),
                         Text(dayNumber,
                             style: TextStyle(
                                 color: isSelected
@@ -132,7 +133,7 @@ class _ListTabState extends State<ListTab> {
                                     : themeProvider.calender,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15)),
-                        Spacer(),
+                        const Spacer(),
                         Text(dayName,
                             style: TextStyle(
                                 color: isSelected
@@ -140,7 +141,7 @@ class _ListTabState extends State<ListTab> {
                                     : themeProvider.calender,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15)),
-                        Spacer(),
+                        const Spacer(),
                       ],
                     ),
                   ),
