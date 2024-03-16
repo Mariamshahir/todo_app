@@ -14,7 +14,8 @@ class ListProvider extends ChangeNotifier {
   }
 
   Future<void> refreshTodo() async {
-    var datetimefelter=selectedDate.copyWith(hour: 0,microsecond: 0,millisecond: 0,minute: 0,second: 0);
+    var datetimefelter = selectedDate.copyWith(
+        hour: 0, microsecond: 0, millisecond: 0, minute: 0, second: 0);
     todos.clear();
     Myuser? currentUser = Myuser.currentUser;
     if (currentUser != null) {
@@ -22,7 +23,10 @@ class ListProvider extends ChangeNotifier {
           .collection(Myuser.collectionName)
           .doc(currentUser.id)
           .collection(Todo.collectionName);
-      QuerySnapshot querySnapshot = await todoCollection.orderBy("date").where("date",isEqualTo: Timestamp.fromDate(datetimefelter)).get();
+      QuerySnapshot querySnapshot = await todoCollection
+          .orderBy("date")
+          .where("date", isEqualTo: Timestamp.fromDate(datetimefelter))
+          .get();
       todos = querySnapshot.docs.map((doc) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
         Timestamp dateAsTime = data["date"];
@@ -82,7 +86,7 @@ class ListProvider extends ChangeNotifier {
         'description': todo.description,
         'date': Timestamp.fromDate(todo.dateTime!),
       });
-     return await refreshTodo();
+      return await refreshTodo();
     }
   }
 }
