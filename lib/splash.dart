@@ -53,9 +53,11 @@ class _SplashState extends State<Splash> {
     User? myuser = FirebaseAuth.instance.currentUser;
     if (myuser != null) {
       Myuser.currentUser = await getUserFromFirestore(myuser.uid);
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => const HomeScreen()));
     } else {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const Login()));
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => const Login()));
     }
   }
 
