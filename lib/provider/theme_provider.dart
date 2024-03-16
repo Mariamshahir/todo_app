@@ -6,7 +6,7 @@ import 'package:todo/utils/app_colors.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeMode currentTheme = ThemeMode.light;
-  SharedPreferences? sharedPreferences; // Change: Making sharedPreferences non-nullable
+  SharedPreferences? sharedPreferences;
 
   Future<void> setItems() async {
     sharedPreferences = await SharedPreferences.getInstance();
