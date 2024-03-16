@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/models/myuser.dart';
@@ -52,9 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           InkWell(
-              onTap: () {
+              onTap: () async{
                 listProvider.clearData();
+                await FirebaseAuth.instance.signOut();
                 Navigator.pushReplacementNamed(context, Login.routeName);
+                Navigator.of(context);
               },
               child: Icon(
                 Icons.logout,
@@ -110,7 +113,4 @@ class _HomeScreenState extends State<HomeScreen> {
           color: AppColors.white,
         ),
       );
-
-
-
 }
