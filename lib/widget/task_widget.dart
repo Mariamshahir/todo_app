@@ -22,7 +22,6 @@ class _TaskWidgetState extends State<TaskWidget> {
   late String date = "${dateTime.day}/${dateTime.month}/${dateTime.year}";
   late ThemeProvider themeProvider;
   late ListProvider listProvider;
-  bool isButtonPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,7 @@ class _TaskWidgetState extends State<TaskWidget> {
           children: [
             Container(
               decoration: BoxDecoration(
-                  color: isButtonPressed
+                  color: widget.todo.isDone!
                       ? AppColors.green
                       : AppColors.backgroundBar,
                   borderRadius: BorderRadius.circular(10)),
@@ -57,7 +56,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                 children: [
                   Text(
                     widget.todo.task ?? "",
-                    style: isButtonPressed
+                    style: widget.todo.isDone!
                         ? AppTheme.textTaskTitle
                             .copyWith(color: AppColors.green)
                         : AppTheme.textTaskTitle,
@@ -96,28 +95,28 @@ class _TaskWidgetState extends State<TaskWidget> {
               ),
             ),
             GestureDetector(
-              onTap: () {
-                toggleDone();
+              onTap: () async{
+                await toggleDone();
               },
               onTapDown: (_) {
                 setState(() {
-                  isButtonPressed = true;
+                  widget.todo.isDone = true;
                 });
               },
               onTapUp: (_) {
                 setState(() {
-                  isButtonPressed = true;
+                  widget.todo.isDone = true;
                 });
               },
               onDoubleTapCancel: () {
                 setState(() {
-                  isButtonPressed = false;
+                  widget.todo.isDone = false;
                   listProvider.updateIsDone(widget.todo, true);
                 });
               },
               onTapCancel: () {
                 setState(() {
-                  isButtonPressed = false;
+                  widget.todo.isDone = false;
                 });
               },
               child: buildisDoneBotton(context),
@@ -132,10 +131,10 @@ class _TaskWidgetState extends State<TaskWidget> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 7.38, horizontal: 21.6),
       decoration: BoxDecoration(
-        color: isButtonPressed ? AppColors.green : AppColors.backgroundBar,
+        color: widget.todo.isDone! ? AppColors.green : AppColors.backgroundBar,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: isButtonPressed
+      child: widget.todo.isDone!
           ? Text(
               context.getLocalizations.done,
               style: const TextStyle(
@@ -152,7 +151,7 @@ class _TaskWidgetState extends State<TaskWidget> {
     );
   }
 
-  void toggleDone() {
-    listProvider.updateIsDone(widget.todo, !widget.todo.isDone!);
+  Future<void> toggleDone() async{
+    await listProvider.updateIsDone(widget.todo, !widget.todo.isDone!);
   }
 }

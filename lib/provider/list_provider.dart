@@ -61,17 +61,16 @@ class ListProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateIsDone(Todo todo, bool isDone) async {
+  Future <void> updateIsDone(Todo todo, bool isDone) async {
     Myuser? currentUser = Myuser.currentUser;
     if (currentUser != null) {
       CollectionReference todoCollection = FirebaseFirestore.instance
           .collection(Myuser.collectionName)
           .doc(currentUser.id)
           .collection(Todo.collectionName);
-      await todoCollection.doc(todo.id).update({"isDone": isDone});
-      todo.isDone = isDone;
+      await todoCollection.doc(todo.id).update({"isDone": todo.isDone});
     }
-    notifyListeners();
+    return await refreshTodo();
   }
 
   Future<void> editTodo(Todo todo) async {
