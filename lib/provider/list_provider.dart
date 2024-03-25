@@ -61,7 +61,7 @@ class ListProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future <void> updateIsDone(Todo todo) async {
+  Future<void> updateIsDone(Todo todo) async {
     Myuser? currentUser = Myuser.currentUser;
     if (currentUser != null) {
       CollectionReference todoCollection = FirebaseFirestore.instance
