@@ -94,30 +94,12 @@ class _TaskWidgetState extends State<TaskWidget> {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () async{
-                await toggleDone();
-              },
-              onTapDown: (_) {
-                setState(() {
-                  widget.todo.isDone = true;
-                });
-              },
-              onTapUp: (_) {
-                setState(() {
-                  widget.todo.isDone = true;
-                });
-              },
-              onDoubleTapCancel: () {
-                setState(() {
-                  widget.todo.isDone = false;
-                  listProvider.updateIsDone(widget.todo, true);
-                });
-              },
-              onTapCancel: () {
-                setState(() {
-                  widget.todo.isDone = false;
-                });
+            InkWell(
+              onTap: () async {
+                ListProvider provider =
+                    Provider.of<ListProvider>(context, listen: false);
+                widget.todo.isDone = !widget.todo.isDone!;
+                await provider.updateIsDone(widget.todo);
               },
               child: buildisDoneBotton(context),
             ),
@@ -149,9 +131,5 @@ class _TaskWidgetState extends State<TaskWidget> {
               color: Colors.white,
             ),
     );
-  }
-
-  Future<void> toggleDone() async{
-    await listProvider.updateIsDone(widget.todo, !widget.todo.isDone!);
   }
 }
